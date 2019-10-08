@@ -14,7 +14,7 @@ from drugRepoSource.NN_model import ReadDrugInfo, DeepModel
 
 def main():
     connect_to_drugbank_web = True  # This only needs to run once.
-    process_drug_n = 10    # max is
+    process_drug_n = 1000    # max is
 
     if connect_to_drugbank_web:
         # Get DrugBank ID.
@@ -25,7 +25,11 @@ def main():
 
         # Get drug info.
         drug_info_all = pd.DataFrame()
+        counter = 0
         for drug_id in drug_ids:
+            counter += 1
+            if counter % 10 == 0:
+                print(counter)
             drug_name, drug_indi, drug_des = GetConditionFromDrugBank(drug_id).get_info()
             drug_indi = "/".join(drug_indi)
             drug_info_one = pd.DataFrame({"Drug_id": drug_id,
