@@ -13,8 +13,8 @@ from drugRepoSource.NN_model import ReadDrugInfo, DeepModel
 
 
 def main():
-    connect_to_drugbank_web = True  # This only needs to run once.
-    process_drug_n = 1000    # max is
+    connect_to_drugbank_web = False  # This only needs to run once.
+    process_drug_n = 100    # max is
 
     if connect_to_drugbank_web:
         # Get DrugBank ID.

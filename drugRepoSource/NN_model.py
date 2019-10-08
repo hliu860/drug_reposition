@@ -33,7 +33,7 @@ class ReadDrugInfo:
         drug_indi = info_data["Indications-DrugBank"].tolist()
         info_data = info_data.loc[[str(x) != "nan" for x in drug_indi]]
         
-        # remove drug with name
+        # remove drugs without name
         drug_name = info_data["Name"].tolist()
         info_data = info_data.loc[[str(x) != "nan" for x in drug_name]]
         
@@ -54,7 +54,7 @@ class DeepModel:
         self.padding_type = 'post'
         self.oov_tok = '<OOV>'
         self.sample_n = self.drug_info_data.shape[0]
-        self.training_size = int(self.sample_n * 0.6)   # 0.6 for train and 0.4 for test.
+        self.training_size = int(self.sample_n * 0.7)   # 0.6 for train and 0.4 for test.
         self.dev_porting = 0.3   # within train, 0.3 for dev.
         # So 0.36 for train, 0.24 for dev and 0.4 for test.
 
@@ -78,7 +78,7 @@ class DeepModel:
 
         # print(len(indications_binary))
         # print(len(indications_binary[0]))
-        # print(corpus)
+        print(corpus)
 
         return corpus
 
@@ -135,9 +135,14 @@ class DeepModel:
         model.add(tf.keras.layers.Dropout(0.1))
 
         # multi-label classification with class_n labels.
-        model.add(tf.keras.layers.Dense(class_n, activation="sigmoid"))
+        # model.add(tf.keras.layers.Dense(class_n, activation="sigmoid"))
+        model.add(tf.keras.layers.Dense(class_n, activation="softmax"))
 
-        model.compile(loss="binary_crossentropy", optimizer="adam", metrics=['accuracy'])
+        # metric_use = tf.keras.metrics.BinaryAccuracy()   # ???????????????????
+        # metric_use = tf.keras.metrics.Accuracy()   # ???????????????????
+        # model.compile(loss="binary_crossentropy", optimizer="adam", metrics=['accuracy'])
+        model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=['accuracy'])
+        # model.compile(loss="binary_crossentropy", optimizer="adam", metrics=[metric_use])
         print(model.summary())
         return model
 
@@ -149,6 +154,7 @@ class DeepModel:
         history = model.fit(training_sequences, training_labels, epochs=num_epochs,
                             validation_data=(dev_sequences, dev_labels), verbose=2)
         print("Training done.")
+        # print(history)
         return history
 
     @staticmethod
@@ -202,6 +208,8 @@ def main():
     drug_info_file = "../drug_info_all.txt"
     drug_info_data = ReadDrugInfo(drug_info_file).read_clean()
     history = DeepModel(drug_info_data).model_run()
+    # print(history.history)
+
     DeepModel(drug_info_data).plot_history(history)
 
 
