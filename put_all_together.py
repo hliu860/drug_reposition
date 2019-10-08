@@ -18,9 +18,10 @@ def main():
 
     if connect_to_drugbank_web:
         # Get DrugBank ID.
-        drug_ids = GetDrugBankID("../../drugbank_vocabulary.csv").read_file()
+        drug_ids = GetDrugBankID("./drugbank_vocabulary.csv").read_file()
         drug_ids = drug_ids.tolist()
         drug_ids = drug_ids[:process_drug_n]
+        # print(drug_ids)
 
         # Get drug info.
         drug_info_all = pd.DataFrame()
@@ -33,11 +34,11 @@ def main():
                                           "Description": drug_des},
                                          index=range(1))
             drug_info_all = drug_info_all.append(drug_info_one, ignore_index=True)
-        drug_info_all.to_csv("../../drug_info_all.txt", sep="\t")
+        drug_info_all.to_csv("../drug_info_all.txt", sep="\t")
         # print(drug_info_all)
 
     # Run NN model
-    drug_info_file = "../../drug_info_all.txt"
+    drug_info_file = "../drug_info_all.txt"
     drug_info_data = ReadDrugInfo(drug_info_file).read_clean()
     history = DeepModel(drug_info_data).model_run()
     DeepModel(drug_info_data).plot_history(history)

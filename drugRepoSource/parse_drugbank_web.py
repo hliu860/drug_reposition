@@ -18,7 +18,7 @@ class GetDrugBankID:
 
     def read_file(self):
         data = pd.read_csv(self.input_file)
-        print(data)
+        # print(data)
         return data["DrugBank ID"]
 
 

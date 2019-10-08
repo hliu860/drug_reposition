@@ -145,7 +145,7 @@ class DeepModel:
         training_sequences, training_labels, dev_sequences, dev_labels = self.prepare_text()
         model = self.model_build()
 
-        num_epochs = 200
+        num_epochs = 50
         history = model.fit(training_sequences, training_labels, epochs=num_epochs,
                             validation_data=(dev_sequences, dev_labels), verbose=2)
         print("Training done.")
@@ -166,7 +166,7 @@ class DeepModel:
 
         epochs = range(len(acc))  # Get number of epochs
 
-        with PdfPages("model_res.pdf") as pdf:
+        with PdfPages("../model_res.pdf") as pdf:
 
             # ------------------------------------------------
             # Plot training and validation accuracy per epoch
