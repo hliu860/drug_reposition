@@ -166,7 +166,7 @@ class DeepModel:
 
         epochs = range(len(acc))  # Get number of epochs
 
-        with PdfPages("../model_res.pdf") as pdf:
+        with PdfPages("./model_res.pdf") as pdf:
 
             # ------------------------------------------------
             # Plot training and validation accuracy per epoch
