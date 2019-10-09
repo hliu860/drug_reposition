@@ -150,7 +150,7 @@ class DeepModel:
         training_sequences, training_labels, dev_sequences, dev_labels = self.prepare_text()
         model = self.model_build()
 
-        num_epochs = 50
+        num_epochs = 500
         history = model.fit(training_sequences, training_labels, epochs=num_epochs,
                             validation_data=(dev_sequences, dev_labels), verbose=2)
         print("Training done.")
