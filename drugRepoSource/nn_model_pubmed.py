@@ -12,6 +12,9 @@ from sklearn.preprocessing import MultiLabelBinarizer
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
+from drugRepoSource.pubmed_search import PubMedBiopython
+import drugRepoSource.NN_model as drugbank_nn
+
 
 # for debug
 pd.set_option('display.max_rows', 500)
@@ -21,110 +24,82 @@ pd.set_option('display.max_colwidth', -1)
 np.set_printoptions(linewidth=300)
 
 
-class ReadDrugInfo:
-    def __init__(self, drug_info_file):
-        self.drug_info = drug_info_file
+class SearchMultipleTerms:
+    def __init__(self, terms):
+        self.search_terms = terms
+        self.get_abstract_n = 10
 
-    def read_clean(self):
-        info_data = pd.read_csv(self.drug_info, sep="\t", index_col=0)
-        
-        # remove drugs without indication.
-        drug_indi = info_data["Indications-DrugBank"].tolist()
-        info_data = info_data.loc[[str(x) != "nan" for x in drug_indi]]
-        
-        # remove drugs without name
-        drug_name = info_data["Name"].tolist()
-        info_data = info_data.loc[[str(x) != "nan" for x in drug_name]]
-        
-        # remove drugs without description
-        drug_des = info_data["Description"]
-        info_data = info_data.loc[[str(x) != 'nan' for x in drug_des]]
-        info_data.reset_index(drop=True, inplace=True)
+    def search_pubmed(self):
+        drug_abstract_all = pd.DataFrame()
+        for search_term in self.search_terms:
+            article_pd = PubMedBiopython(search_term).search_pubmed()
+            print(search_term)
+            print(article_pd.shape)
 
-        return info_data
+            sentences = article_pd.abstract.tolist()
+            sentences_combine = " ".join(sentences[:self.get_abstract_n])   # take first 10 abstracts.
+            term_abstract = pd.Series({"Drug": search_term, "Abstract": sentences_combine})
 
+            drug_abstract_all = drug_abstract_all.append(term_abstract, ignore_index=True)
 
-class DeepModel:
-    def __init__(self, drug_info_data):
-        self.drug_info_data = drug_info_data
-        self.embedding_dim = 100
-        self.max_length = 200
-        self.trunc_type = 'post'
-        self.padding_type = 'post'
-        self.oov_tok = '<OOV>'
-        self.sample_n = self.drug_info_data.shape[0]
-        self.training_size = int(self.sample_n * 0.7)   # 0.6 for train and 0.4 for test.
-        self.dev_porting = 0.3   # within train, 0.3 for dev.
-        # So 0.36 for train, 0.24 for dev and 0.4 for test.
+        return drug_abstract_all
 
-    def make_label(self):
-        """Label is the condition that drug can treat."""
-        corpus = self.drug_info_data.copy()
+    def pre_process(self):
+        drug_abstract_all = self.search_pubmed()
 
-        indications = [item.split("/") for item in corpus["Indications-DrugBank"]]
-        # print(indications)
-        mlb = MultiLabelBinarizer()
-        indications_binary = mlb.fit_transform(indications)
-        # print(*list(mlb.classes_), sep="\n")
-        # print(len(list(mlb.classes_)))
-
-        corpus["label"] = indications_binary.tolist()
-
-        # total number of indications
-        # how many classes means how many indications.
-        global class_n
-        class_n = len(indications_binary[0])
-
-        # print(len(indications_binary))
-        # print(len(indications_binary[0]))
-        # print(corpus)
-
-        return corpus
-
-    def prepare_text(self):     
-        corpus = self.make_label()
-
-        # Get sentences and labels
-        sentences = []
-        labels = []
-        corpus = corpus.sample(frac=1, random_state=1).reset_index(drop=True)
-
-        # print(corpus)
-
-        for i in range(self.training_size):
-            sentences.append(corpus.loc[i, "Description"])
-            labels.append(corpus.loc[i, "label"])
-        
-        # Tokenize
+        sentences = drug_abstract_all.Abstract.tolist()
         tokenizer = Tokenizer()
         tokenizer.fit_on_texts(sentences)
         word_index = tokenizer.word_index
 
-        global vocab_size
         vocab_size = len(word_index)
-        
-        # Make text to sequence
-        sequences = tokenizer.texts_to_sequences(sentences)
-        
-        # Padding
-        padded = pad_sequences(sequences, maxlen=self.max_length,
-                               padding=self.padding_type, truncating=self.trunc_type)
+        print()
+        print("vocab_size", vocab_size)
 
+        sequences = tokenizer.texts_to_sequences(sentences)
+
+        padded = pad_sequences(sequences, maxlen=4000, padding="post", truncating="post")
+
+        # print(padded.shape)
+
+        return padded
+
+
+class DeepModel:
+    def __init__(self, input_data, labels):
+        self.input_data = input_data
+        self.labels = labels
+        self.training_sample = len(labels)
+        self.dev_portion = 0.3
+
+        self.embedding_dim = 100
+
+    def divide_train_dev_test(self):
         # Split training data into train and dev.
-        split = int(self.dev_porting * self.training_size)
-        dev_sequences = padded[0:split]
-        training_sequences = padded[split:self.training_size]
+
+        # print('\n\n\n')
+        split = int(self.dev_portion * self.training_sample)   # 0.3 is dev_portion, 20 is training samples (number of drugs)
+        # print(split)
+        dev_data = self.input_data[0:split]
+        training_data = self.input_data[split:self.training_sample]
+
+        labels = self.labels
 
         dev_labels = labels[0:split]
         dev_labels = np.array(dev_labels)
-        training_labels = labels[split:self.training_size]
+        training_labels = labels[split:self.training_sample]
         training_labels = np.array(training_labels)
 
-        return training_sequences, training_labels, dev_sequences, dev_labels
+        # print(training_data.shape)
+        # print(dev_data.shape)
+        # print(len(training_labels))
+        # print(len(dev_labels))
+
+        return training_data, training_labels, dev_data, dev_labels
 
     def model_build(self):
         model = tf.keras.Sequential()
-        model.add(tf.keras.layers.Embedding(vocab_size+1, self.embedding_dim, input_length=self.max_length))
+        model.add(tf.keras.layers.Embedding(input_dim=10000+1, output_dim=100, input_length=4000))
         model.add(tf.keras.layers.Dropout(0.1))
         model.add(tf.keras.layers.Conv1D(64, 5, activation="relu"))
         model.add(tf.keras.layers.MaxPooling1D(pool_size=4))
@@ -135,7 +110,9 @@ class DeepModel:
 
         # multi-label classification with class_n labels.
         # model.add(tf.keras.layers.Dense(class_n, activation="sigmoid"))
+        class_n = len(self.labels[0])
         model.add(tf.keras.layers.Dense(class_n, activation="softmax"))
+        # model.add(tf.keras.layers.Dense(1, activation="sigmoid"))
 
         # metric_use = tf.keras.metrics.BinaryAccuracy()   # ???????????????????
         # metric_use = tf.keras.metrics.Accuracy()   # ???????????????????
@@ -146,14 +123,13 @@ class DeepModel:
         return model
 
     def model_run(self):
-        training_sequences, training_labels, dev_sequences, dev_labels = self.prepare_text()
+        training_sequences, training_labels, dev_sequences, dev_labels = self.divide_train_dev_test()
         model = self.model_build()
 
-        num_epochs = 500
+        num_epochs = 10
         history = model.fit(training_sequences, training_labels, epochs=num_epochs,
                             validation_data=(dev_sequences, dev_labels), verbose=2)
         print("Training done.")
-        # print(history)
         return history
 
     @staticmethod
@@ -204,12 +180,21 @@ class DeepModel:
 
 
 def main():
-    drug_info_file = "../drug_info_all.txt"
-    drug_info_data = ReadDrugInfo(drug_info_file).read_clean()
-    history = DeepModel(drug_info_data).model_run()
-    # print(history.history)
+    drug_info_file = "../../drug_info_all.txt"
+    drug_info_data = drugbank_nn.ReadDrugInfo(drug_info_file).read_clean()
+    # print(drug_info_data.shape)
+    drug_info_data = drug_info_data[:20]
 
-    DeepModel(drug_info_data).plot_history(history)
+    corpus = drugbank_nn.DeepModel(drug_info_data).make_label()
+    print("corpus shape", corpus.shape)
+
+    search_terms = drug_info_data.Name.tolist()
+    abstract_all_padded = SearchMultipleTerms(search_terms).pre_process()
+
+    labels = corpus.label.tolist()
+    history = DeepModel(abstract_all_padded, labels).model_run()
+    print(history)
+    DeepModel.plot_history(history)
 
 
 if __name__ == '__main__':
