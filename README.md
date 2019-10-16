@@ -1,2 +1,3 @@
-# drug_reposition
+# Drug reposition
+
 Drug repositioning by deep learning
