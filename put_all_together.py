@@ -11,6 +11,7 @@ import drugRepoSource.nn_model_pubmed as nn_pubmed
 
 
 def main():
+<<<<<<< HEAD
     GetDrugInfo("./drugbank_vocabulary.csv").get_drug_info()
     drug_info_file = "./drug_info_all.txt"
     drug_info_data = drugbank_nn.ReadDrugInfo(drug_info_file).read_clean()
@@ -27,6 +28,41 @@ def main():
     history = nn_pubmed.DeepModel(abstract_all_padded, labels).model_run()
     print(history)
     nn_pubmed.DeepModel.plot_history(history)
+=======
+    connect_to_drugbank_web = False  # This only needs to run once.
+    process_drug_n = 1000    # max is
+
+    if connect_to_drugbank_web:
+        # Get DrugBank ID.
+        drug_ids = GetDrugBankID("./drugbank_vocabulary.csv").read_file()
+        drug_ids = drug_ids.tolist()
+        drug_ids = drug_ids[:process_drug_n]
+        # print(drug_ids)
+
+        # Get drug info.
+        drug_info_all = pd.DataFrame()
+        counter = 0
+        for drug_id in drug_ids:
+            counter += 1
+            if counter % 10 == 0:
+                print(counter)
+            drug_name, drug_indi, drug_des = GetConditionFromDrugBank(drug_id).get_info()
+            drug_indi = "/".join(drug_indi)
+            drug_info_one = pd.DataFrame({"Drug_id": drug_id,
+                                          "Name": drug_name,
+                                          "Indications-DrugBank": drug_indi,
+                                          "Description": drug_des},
+                                         index=range(1))
+            drug_info_all = drug_info_all.append(drug_info_one, ignore_index=True)
+        drug_info_all.to_csv("../drug_info_all.txt", sep="\t")
+        # print(drug_info_all)
+
+    # Run NN model
+    drug_info_file = "../drug_info_all.txt"
+    drug_info_data = ReadDrugInfo(drug_info_file).read_clean()
+    history = DeepModel(drug_info_data).model_run()
+    DeepModel(drug_info_data).plot_history(history)
+>>>>>>> 5322ed4ad6b8e9a9a8c0ce386ec9ec60431ea07a
 
 
 if __name__ == '__main__':
