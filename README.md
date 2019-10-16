@@ -1,4 +1,4 @@
 # drug_reposition
-From online
+From local
 
 Drug repositioning by deep learning
