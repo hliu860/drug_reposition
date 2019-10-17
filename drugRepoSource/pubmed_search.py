@@ -27,15 +27,17 @@ np.set_printoptions(linewidth=300)
 class PubMedBiopython:
     def __init__(self, query_term):
         self.qeury_term = query_term
+        self.retmax = 100
 
     def search_pubmed(self):
         Entrez.email = 'hliu860@gmail.com'
 
-        # Search term and retrieve pubmed ID list
-        e_search = Entrez.esearch(db="pubmed", retmax=100, term=self.qeury_term)
+        # Search term and retrieve Pubmed ID list
+        e_search = Entrez.esearch(db="pubmed", retmax=self.retmax, term=self.qeury_term)
         res_search = Entrez.read(e_search)
         e_search.close()
         id_list = res_search["IdList"]
+        print("Search Pubmed returned ", len(id_list), ' PMIDs.')
         id_string = ", ".join(id_list)
 
         # Fetch data
@@ -52,26 +54,27 @@ class PubMedBiopython:
             # make sure it has abstract
             if "Abstract" in medline_art.keys():
                 # make sure date is available.
-                if medline_art['ArticleDate']:  # means it is not empty list []
-                    # Collect info.
-                    art_pmid = medline_cit['PMID']
-                    # print(art_pmid)
-                    art_lan = medline_art['Language'][0]
-                    art_title = medline_art['ArticleTitle']
-                    art_abstract = medline_art['Abstract']['AbstractText']
-                    art_abstract = ' '.join(art_abstract)
-                    # print(medline_art['ArticleDate'])
-                    art_date = medline_art['ArticleDate'][0]
+                # Collect info.
+                art_pmid = medline_cit['PMID']
+                # print(art_pmid)
+                # art_lan = medline_art['Language'][0]
+                art_title = medline_art['ArticleTitle']
+                art_abstract = medline_art['Abstract']['AbstractText']
+                art_abstract = ' '.join(art_abstract)
+                # print(medline_art['ArticleDate'])
+                # art_date = medline_art['ArticleDate'][0]
 
-                    art_series = pd.Series({
-                        'pmid': art_pmid,
-                        'Original_language': art_lan,
-                        'year': art_date['Year'],
-                        'title': art_title,
-                        'abstract': art_abstract
-                        }
-                    )
-                    article_pd = article_pd.append(art_series, ignore_index=True)
+                art_series = pd.Series({
+                    'pmid': art_pmid,
+                    # 'Original_language': art_lan,
+                    # 'year': art_date['Year'],
+                    'title': art_title,
+                    'abstract': art_abstract
+                }
+                )
+                article_pd = article_pd.append(art_series, ignore_index=True)
+
+                # if medline_art['ArticleDate']:  # means it is not empty list []
 
         # print(article_pd)
 
@@ -80,9 +83,11 @@ class PubMedBiopython:
 
 
 def main():
-    search_term = "Acetaminophen"
+    # search_term = "Acetaminophen"
+    search_term = "Interferon alfa-n3"
     article_pd = PubMedBiopython(search_term).search_pubmed()
     print(article_pd)
+    print(article_pd.shape)
 
 
 if __name__ == '__main__':
