@@ -11,23 +11,27 @@ class DeepModel:
         self.labels = labels
         self.dev_portion = 0.3
         self.embedding_dim = 100
-        self.padding_length = 4000
 
     def pre_process(self):
         drug_abstract_all = self.input_data_text
+        # print("drug_abstract_all shape is ", drug_abstract_all.shape)
+        abstracts_len = [len(item) for item in drug_abstract_all.Abstract]
+        padding_length = np.max(abstracts_len)
+        # print("padding_length is ", padding_length)
 
         sentences = drug_abstract_all.Abstract.tolist()
         tokenizer = Tokenizer()
         tokenizer.fit_on_texts(sentences)
-        word_index = tokenizer.word_index
 
-        vocab_size = len(word_index)
+        # This will be used to get back the text from sequence.
+        # word_index = tokenizer.word_index
+        # vocab_size = len(word_index)
         # print()
-        print("vocab_size", vocab_size)
+        # print("vocab_size", vocab_size)
 
         sequences = tokenizer.texts_to_sequences(sentences)
 
-        padded = pad_sequences(sequences, maxlen=self.padding_length, padding="post", truncating="post")
+        padded = pad_sequences(sequences, maxlen=padding_length, padding="post", truncating="post")
 
         return padded
 
@@ -48,9 +52,9 @@ class DeepModel:
 
         return training_data, training_labels, dev_data, dev_labels
 
-    def model_build(self, vocab_size):
+    def model_build(self, vocab_size, padding_length):
         model = tf.keras.Sequential()
-        model.add(tf.keras.layers.Embedding(input_dim=vocab_size+1, output_dim=self.embedding_dim, input_length=self.padding_length))
+        model.add(tf.keras.layers.Embedding(input_dim=vocab_size+1, output_dim=self.embedding_dim, input_length=padding_length))
         model.add(tf.keras.layers.Dropout(0.1))
         model.add(tf.keras.layers.Conv1D(64, 5, activation="relu"))
         model.add(tf.keras.layers.MaxPooling1D(pool_size=4))
@@ -75,9 +79,14 @@ class DeepModel:
 
     def model_run(self):
         training_sequences, training_labels, dev_sequences, dev_labels = self.divide_train_dev_test()
+
+        # Get vocabulary size
         vocab_size = np.max([np.max(training_sequences), np.max(dev_sequences)])
-        # print("vocab_size", vocab_size)
-        model = self.model_build(vocab_size=vocab_size)
+        # Get padding length
+        padding_length = len(training_sequences[0])
+        # print('model run has padding length ', padding_length)
+
+        model = self.model_build(vocab_size=vocab_size, padding_length=padding_length)
 
         num_epochs = 10
         history = model.fit(training_sequences, training_labels, epochs=num_epochs,

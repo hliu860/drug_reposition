@@ -25,9 +25,9 @@ np.set_printoptions(linewidth=300)
 
 
 class PubMedBiopython:
-    def __init__(self, query_term):
+    def __init__(self, query_term, retmax):
         self.qeury_term = query_term
-        self.retmax = 100
+        self.retmax = retmax
 
     def search_pubmed(self):
         Entrez.email = 'hliu860@gmail.com'
@@ -37,7 +37,7 @@ class PubMedBiopython:
         res_search = Entrez.read(e_search)
         e_search.close()
         id_list = res_search["IdList"]
-        print("Search Pubmed returned ", len(id_list), ' PMIDs.')
+        # print("Search Pubmed returned ", len(id_list), ' PMIDs.')
         id_string = ", ".join(id_list)
 
         # Fetch data

@@ -4,26 +4,26 @@ from drugRepoSource.parse_drugbank_web import GetDrugBankID, GetConditionFromDru
 
 
 class GetDrugInfoFromDrugBank:
-    def __init__(self, db_voca):
-        self.connect_to_drugbank_web = True
-        self.process_drug_n = 50
-        self.db_voca = db_voca
+    def __init__(self, drugbank_vocabulary, process_drug_n, connect_to_drugbank_web):
+        self.connect_to_drugbank_web = connect_to_drugbank_web
+        self.process_drug_n = process_drug_n
+        self.db_voca = drugbank_vocabulary
 
     def get_drug_info(self):
         if self.connect_to_drugbank_web:
+            print("Searching drugbank.com for ", self.process_drug_n, " drugs.")
+            print("It will take a while.")
             # Get DrugBank ID.
             drug_ids = GetDrugBankID(self.db_voca).read_file()
             drug_ids = drug_ids.tolist()
             drug_ids = drug_ids[:self.process_drug_n]
-            print("Search drugbank.com for ", self.process_drug_n, ' drugs')
-            print("It will take a while...")
 
             # Get drug info.
             drug_info_all = pd.DataFrame()
             counter = 0
             for drug_id in drug_ids:
                 counter += 1
-                if counter % 50 == 0:
+                if counter % 10 == 0:
                     print(counter, " / ", self.process_drug_n)
 
                 drug_name, drug_indi, drug_des = GetConditionFromDrugBank(drug_id).get_info()
@@ -35,11 +35,15 @@ class GetDrugInfoFromDrugBank:
                                              index=range(1))
                 drug_info_all = drug_info_all.append(drug_info_one, ignore_index=True)
             drug_info_all.to_csv("./drug_info_all.txt", sep="\t")
+
+            print("Search drugbank.com returned ", drug_info_all.shape[0], ' drugs with shape ', drug_info_all.shape)
+            print("Saved ./drug_info_all.txt.")
+
             return drug_info_all
 
 
 def main():
-    GetDrugInfoFromDrugBank("../drugbank_vocabulary.csv").get_drug_info()
+    GetDrugInfoFromDrugBank("../drugbank_vocabulary.csv", process_drug_n=15).get_drug_info()
 
 
 if __name__ == '__main__':
