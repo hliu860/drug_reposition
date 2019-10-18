@@ -62,19 +62,19 @@ class DeepModel:
         model.add(tf.keras.layers.Embedding(input_dim=vocab_size+1, output_dim=self.embedding_dim, input_length=padding_length))
         # model.add(tf.keras.layers.Dropout(0.1))
         # model.add(tf.keras.layers.Conv1D(64, 5, activation="relu"))
+        model.add(tf.keras.layers.Conv1D(class_n, 5, activation="relu"))
+        model.add(tf.keras.layers.MaxPooling1D(pool_size=4))
+        # model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(class_n * 1, return_sequences=False)))
 
         # model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(64, return_sequences=True)))
-        model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(class_n*3, return_sequences=True)))
+        # model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(class_n*3, return_sequences=True)))
 
         # model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(32)))
         # model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(class_n*2, return_sequences=True)))
-        model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(class_n*1, return_sequences=True)))
-        # model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(class_n)))
+        model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(int(class_n/2), return_sequences=True)))
+        model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(class_n)))
         # model.add(tf.keras.layers.Dense(64, activation="relu"))
         # model.add(tf.keras.layers.Dropout(0.1))
-        model.add(tf.keras.layers.Conv1D(class_n, 5, activation="relu"))
-        model.add(tf.keras.layers.MaxPooling1D(pool_size=4))
-        model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(class_n*1, return_sequences=False)))
 
         # model.add(tf.keras.layers.Flatten)
         # multi-label classification with class_n labels.

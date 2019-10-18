@@ -108,7 +108,7 @@ class AllTogether:
 
 def main():
 
-    AllTogether(already_have_data=True, process_drug_n=20, pubmed_search_ret_max=100).run_all_together()
+    AllTogether(already_have_data=False, process_drug_n=20, pubmed_search_ret_max=20).run_all_together()
 
 
 if __name__ == '__main__':
