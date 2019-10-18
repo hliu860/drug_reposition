@@ -1,4 +1,3 @@
-from pymed import PubMed
 import xml.etree.cElementTree as ET
 from Bio import Entrez
 import pandas as pd
