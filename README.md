@@ -1,4 +1,2 @@
-# drug_reposition
-From local local
-
-Drug repositioning by deep learning
+#Drug-Indication predictin by deep learning
+##With application in drug repositioning
