@@ -103,7 +103,10 @@ class DeepModel:
 
         model = self.model_build(vocab_size=vocab_size, padding_length=padding_length)
 
-        history = model.fit(training_sequences, training_labels, epochs=self.num_epochs,
-                            validation_data=(dev_sequences, dev_labels), verbose=2)
+        history = model.fit(training_sequences, training_labels,
+                            batch_size=32,  # default 32.
+                            epochs=self.num_epochs,
+                            validation_data=(dev_sequences, dev_labels),
+                            verbose=2)
         print("Training done.")
         return history
