@@ -10,10 +10,11 @@ from drugRepoSource.plot_history import PlotHistory
 
 
 class AllTogether:
-    def __init__(self, already_have_data, process_drug_n, pubmed_search_ret_max):
+    def __init__(self, already_have_data, process_drug_n, pubmed_search_ret_max, num_epochs):
         self.already_have_data = already_have_data
         self.process_drug_n = process_drug_n
         self.pubmed_search_ret_max = pubmed_search_ret_max
+        self.num_epochs = num_epochs
 
     def run_all_together(self):
 
@@ -86,7 +87,7 @@ class AllTogether:
             print("labels length is ", len(labels))
 
             # Run deep model.
-            history = DeepModel(drug_abstract_all, labels).model_run()
+            history = DeepModel(drug_abstract_all, labels, num_epochs=self.num_epochs).model_run()
             PlotHistory(history).plot_history()
             print('Plot results pdf done.')
 
@@ -101,14 +102,14 @@ class AllTogether:
             labels = pickle.load(pickle_in)
 
             # Run deep model.
-            history = DeepModel(drug_abstract_all, labels).model_run()
+            history = DeepModel(drug_abstract_all, labels, num_epochs=self.num_epochs).model_run()
             PlotHistory(history).plot_history()
             print('Plot results pdf done.')
 
 
 def main():
 
-    AllTogether(already_have_data=False, process_drug_n=20, pubmed_search_ret_max=20).run_all_together()
+    AllTogether(already_have_data=True, process_drug_n=20, pubmed_search_ret_max=20, num_epochs=10).run_all_together()
 
 
 if __name__ == '__main__':

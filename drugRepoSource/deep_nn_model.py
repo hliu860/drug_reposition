@@ -6,11 +6,12 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 
 class DeepModel:
-    def __init__(self, input_data_text, labels):
+    def __init__(self, input_data_text, labels, num_epochs):
         self.input_data_text = input_data_text
         self.labels = labels
         self.dev_portion = 0.3
         self.embedding_dim = 100
+        self.num_epochs = num_epochs
 
     def pre_process(self):
         drug_abstract_all = self.input_data_text
@@ -62,7 +63,7 @@ class DeepModel:
         model.add(tf.keras.layers.Embedding(input_dim=vocab_size+1, output_dim=self.embedding_dim, input_length=padding_length))
         # model.add(tf.keras.layers.Dropout(0.1))
         # model.add(tf.keras.layers.Conv1D(64, 5, activation="relu"))
-        model.add(tf.keras.layers.Conv1D(class_n, 5, activation="relu"))
+        model.add(tf.keras.layers.Conv1D(64, 5, activation="relu"))
         model.add(tf.keras.layers.MaxPooling1D(pool_size=4))
         # model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(class_n * 1, return_sequences=False)))
 
@@ -71,9 +72,10 @@ class DeepModel:
 
         # model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(32)))
         # model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(class_n*2, return_sequences=True)))
-        model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(int(class_n/2), return_sequences=True)))
-        model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(class_n)))
-        # model.add(tf.keras.layers.Dense(64, activation="relu"))
+        model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(16, return_sequences=True)))
+        # model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(class_n*2)))
+        model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(class_n*3)))
+        model.add(tf.keras.layers.Dense(class_n*2, activation="relu"))
         # model.add(tf.keras.layers.Dropout(0.1))
 
         # model.add(tf.keras.layers.Flatten)
@@ -101,8 +103,7 @@ class DeepModel:
 
         model = self.model_build(vocab_size=vocab_size, padding_length=padding_length)
 
-        num_epochs = 10
-        history = model.fit(training_sequences, training_labels, epochs=num_epochs,
+        history = model.fit(training_sequences, training_labels, epochs=self.num_epochs,
                             validation_data=(dev_sequences, dev_labels), verbose=2)
         print("Training done.")
         return history
