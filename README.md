@@ -4,5 +4,4 @@
 To run:
 ```
 $ python put_all_together.py
-
 ```
