@@ -1,0 +1,15 @@
+	Drug_id	Drug_name	Indication
+0	DB00002	Cetuximab	Metastatic Colorectal Cancers
+1	DB00002	Cetuximab	Metastatic Squamous Cell Carcinoma of the Head and Neck
+2	DB00002	Cetuximab	Advanced squamous cell carcinoma of the head and neck
+3	DB00003	Dornase alfa	Cystic Fibrosis (CF)
+4	DB00004	Denileukin diftitox	Cutaneous T-Cell Lymphoma (CTCL)
+5	DB00005	Etanercept	Ankylosing Spondylitis (AS)
+6	DB00005	Etanercept	Graft Versus Host Disease (GVHD)
+7	DB00005	Etanercept	Hidradenitis Suppurativa (HS)
+8	DB00005	Etanercept	Polyarticular Juvenile Idiopathic Arthritis
+9	DB00005	Etanercept	Psoriasis Vulgaris (Plaque Psoriasis)
+10	DB00005	Etanercept	Psoriatic Arthritis
+11	DB00005	Etanercept	Pyoderma Gangrenosum
+12	DB00005	Etanercept	Rheumatoid Arthritis
+13	DB00005	Etanercept	Severe, active Rheumatoid arthritis

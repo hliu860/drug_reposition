@@ -1,5 +1,5 @@
-from pymed import PubMed
 import xml.etree.cElementTree as ET
+import time
 from Bio import Entrez
 import pandas as pd
 import numpy as np
@@ -25,64 +25,73 @@ np.set_printoptions(linewidth=300)
 
 
 class PubMedBiopython:
-    def __init__(self, query_term):
+    def __init__(self, query_term, retmax):
         self.qeury_term = query_term
+        self.retmax = retmax
 
     def search_pubmed(self):
+        time.sleep(1)  # pause for 1 second between each search.
         Entrez.email = 'hliu860@gmail.com'
 
-        # Search term and retrieve pubmed ID list
-        e_search = Entrez.esearch(db="pubmed", retmax=100, term=self.qeury_term)
+        # Search term and retrieve Pubmed ID list
+        e_search = Entrez.esearch(db="pubmed", retmax=self.retmax, term=self.qeury_term)
         res_search = Entrez.read(e_search)
         e_search.close()
         id_list = res_search["IdList"]
-        id_string = ", ".join(id_list)
+        # print("Search Pubmed returned ", len(id_list), ' PMIDs.')
 
-        # Fetch data
-        handle = Entrez.efetch(db='pubmed', id=id_string, retmode='xml')
-        data = Entrez.read(handle)
+        if len(id_list) > 0:
+            id_string = ", ".join(id_list)
+            # Fetch data
+            handle = Entrez.efetch(db='pubmed', id=id_string, retmode='xml')
+            data = Entrez.read(handle)
 
-        articles = data['PubmedArticle']
-        article_pd = pd.DataFrame()
-        for article in articles:
-            medline_cit = article['MedlineCitation']
-            """OtherAbstract has abstract of other language"""
-            medline_art = medline_cit['Article']
+            articles = data['PubmedArticle']
+            article_pd = pd.DataFrame()
+            for article in articles:
+                medline_cit = article['MedlineCitation']
+                """OtherAbstract has abstract of other language"""
+                medline_art = medline_cit['Article']
 
-            # make sure it has abstract
-            if "Abstract" in medline_art.keys():
-                # make sure date is available.
-                if medline_art['ArticleDate']:  # means it is not empty list []
+                # make sure it has abstract
+                if "Abstract" in medline_art.keys():
+                    # make sure date is available.
                     # Collect info.
                     art_pmid = medline_cit['PMID']
                     # print(art_pmid)
-                    art_lan = medline_art['Language'][0]
+                    # art_lan = medline_art['Language'][0]
                     art_title = medline_art['ArticleTitle']
                     art_abstract = medline_art['Abstract']['AbstractText']
                     art_abstract = ' '.join(art_abstract)
                     # print(medline_art['ArticleDate'])
-                    art_date = medline_art['ArticleDate'][0]
+                    # art_date = medline_art['ArticleDate'][0]
 
                     art_series = pd.Series({
                         'pmid': art_pmid,
-                        'Original_language': art_lan,
-                        'year': art_date['Year'],
+                        # 'Original_language': art_lan,
+                        # 'year': art_date['Year'],
                         'title': art_title,
                         'abstract': art_abstract
-                        }
+
+                    }
                     )
                     article_pd = article_pd.append(art_series, ignore_index=True)
+            handle.close()
+        else:
+            article_pd = pd.DataFrame({"abstract": "no_return", "pmid": "no_return", "title": "no_return"},
+                                      index=range(1))
 
         # print(article_pd)
 
-        handle.close()
         return article_pd
 
 
 def main():
-    search_term = "Acetaminophen"
+    # search_term = "Acetaminophen"
+    search_term = "Interferon alfa-n3"
     article_pd = PubMedBiopython(search_term).search_pubmed()
     print(article_pd)
+    print(article_pd.shape)
 
 
 if __name__ == '__main__':

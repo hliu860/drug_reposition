@@ -64,13 +64,6 @@ def main():
     drug_ids = drug_ids.tolist()
     drug_ids = drug_ids[:10]
 
-    # drug_ids = ["DB00440", "DB00316", "DB01048",
-    #             "DB00106", "DB05812", "DB08899",
-    #             "DB11703", "DB00284", "DB13783",
-    #             "DB03166", "DB00551", "DB01063",
-    #             "DB00787", "DB00131", "DB08916",
-    #             "DB06594", "DB00518", "DB06766"]
-
     drug_info_all = pd.DataFrame()
 
     for drug_id in drug_ids:
