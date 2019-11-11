@@ -30,14 +30,16 @@ class GetDrugInfoFromDrugBank:
                 drug_indi = "/".join(drug_indi)
                 drug_info_one = pd.DataFrame({"Drug_id": drug_id,
                                               "Name": drug_name,
-                                              "Indications-DrugBank": drug_indi,
-                                              "Description": drug_des},
+                                              "Indications-DrugBank": drug_indi
+                                              # "Description": drug_des
+                                              },
                                              index=range(1))
                 drug_info_all = drug_info_all.append(drug_info_one, ignore_index=True)
             drug_info_all.to_csv("./drug_info_all.txt", sep="\t")
 
             print("Search drugbank.com returned ", drug_info_all.shape[0], ' drugs with shape ', drug_info_all.shape)
-            print("Saved ./drug_info_all.txt.")
+            # print("Saved ./drug_info_all.txt.")
+            # print(drug_info_all)
 
             return drug_info_all
 

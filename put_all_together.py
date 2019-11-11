@@ -7,6 +7,7 @@ from drugRepoSource.make_label import MakeLable
 from drugRepoSource.search_pubmed_with_terms import SearchMultipleTerms
 from drugRepoSource.deep_nn_model import DeepModel
 from drugRepoSource.plot_history import PlotHistory
+from drugRepoSource.metamap_indication_to_umls import IndiToUMLS
 
 
 class AllTogether:
@@ -21,25 +22,39 @@ class AllTogether:
         if not self.already_have_data:
             print("Dont have data, start from ground...")
 
-            # Search Drugbank.com and get drug info, name indication and description.
+            # Search Drugbank.com and get drug info, name, indication and description.
             connect_to_drugbank_web = True
             drugbank_vocabulary = "./drugbank_vocabulary.csv"
-            # to produce drug_info_all.txt if already exist, skip this.
             GetDrugInfoFromDrugBank(drugbank_vocabulary=drugbank_vocabulary,
                                     process_drug_n=self.process_drug_n,
                                     connect_to_drugbank_web=connect_to_drugbank_web).get_drug_info()
-
-            # If drug_info_all.txt already exist, jump here.
             drug_info_file = "./drug_info_all.txt"
 
-            # Read drug info and clean it (remove drug without name, indication, description.)
-            drug_info_data = ReadDrugInfoAndClean(drug_info_file).read_clean()
-            print("Cleaning drugs returned ", drug_info_data.shape[0], ' drugs that have name, indication and desciption')
+            # Read drug info and clean it (remove drug without name, indication.)
+            drug_info_data = ReadDrugInfoAndClean(drug_info_file).run()
+            print("Cleaning drugs returned ", drug_info_data.shape[0], ' drug-indication relations.')
             print("It has shape ", drug_info_data.shape)
+            drug_info_data.to_csv("drug_info_data.txt", sep='\t')
 
-            # Make label for each drug, label is multi-hot indications.
-            corpus = MakeLable(drug_info_data).make_label()
-            print("Make label returned corpus with labels it has shape ", corpus.shape)
+            # Metamap indication to UMLS concept.
+            print("Metamap indication to UMLS concept.")
+            drug_info_data_umls = IndiToUMLS(drug_info_data).run()
+            print("Metamap DONE.s")
+            drug_info_data_umls.to_csv("drug_info_data_map_to_umls.txt", sep="\t")
+            print("drug_info_data_umls has shape ", drug_info_data_umls.shape)
+
+            # Search drug name to PubMed. Return abstracts,
+            print("Search drug name and indication name together to Pubmed for abstracts.")
+            print("Search Pubmed will return ", self.pubmed_search_ret_max, ' PMIDs.')
+            print("Some drug name will not have enough PMID, so the actual PMID will be smaller.")
+            print("Some PMID does not have abstract so the actual abstract will be smaller.")
+            search_terms = [drug_info_data_umls["Drug_name"], drug_info_data_umls["Indi_UMLS_concept"]]
+            drug_abstract_all = SearchMultipleTerms(search_terms, retmax=self.pubmed_search_ret_max).search_pubmed()
+            print("drug_abstract_all has shape ", drug_abstract_all.shape)
+
+            # Make label for each drug, label is one-hot indications.
+            corpus = MakeLable(drug_abstract_all).make_label()
+            print("Make label returned corpus with shape ", corpus.shape)
             print("corpus has the label with length", len(corpus.label[0]), " it means this many classes.")
             # Save corpus
             pickle_out = open("./corpus.pickle", 'wb')
@@ -51,65 +66,31 @@ class AllTogether:
             corpus = pickle.load(pickle_in)
             print("Read in corpus.")
 
-            # Search drug name to PubMed. Return abstracts,
-            print()
-            print("Search drug name to Pubmed for abstracts.")
-            search_terms = drug_info_data.Name.tolist()
-            print("Search Pubmed will return ", self.pubmed_search_ret_max, ' PMIDs.')
-            print("Some drug name will not have enough PMID, so the actual PMID will be smaller.")
-            print("Some PMID does not have abstract so the actual abstract will be smaller.")
-            drug_abstract_all = SearchMultipleTerms(search_terms, retmax=self.pubmed_search_ret_max).search_pubmed()
-            print("drug_abstract_all has shape ", drug_abstract_all.shape)
-            # Save out.
-            pickle_out = open("./drug_abstract_all.pickle", 'wb')
-            pickle.dump(drug_abstract_all, pickle_out)
-            pickle_out.close()
-            print("Saved drug_abstract_all")
-            # Read in
-            pickle_in = open("./drug_abstract_all.pickle", "rb")
-            drug_abstract_all = pickle.load(pickle_in)
-            print("Read in drug_abstract_all")
-
-            # Input abstracts and labels (for each drug) to NN model.
-            # pre-process by tokenize and padding.
-            print()
+            """
+               Run deep model.
+            """
+            # Input abstracts and labels  to NN model, pre-process by tokenize and padding.
             print("Input abstracts and labels to NN model.")
+            abstracts = corpus.Abstract.tolist()
             labels = corpus.label.tolist()
-            # Save
-            pickle_out = open("./labels.pickle", 'wb')
-            pickle.dump(labels, pickle_out)
-            pickle_out.close()
-            print("Saved labels.")
-            # Read in
-            pickle_in = open("./labels.pickle", 'rb')
-            labels = pickle.load(pickle_in)
-            print("Read in labels.")
-            print("labels length is ", len(labels))
-
-            # Run deep model.
-            history = DeepModel(drug_abstract_all, labels, num_epochs=self.num_epochs).model_run()
+            history = DeepModel(input_data_text=abstracts, labels=labels, num_epochs=self.num_epochs).model_run()
             PlotHistory(history).plot_history()
             print('Plot results pdf done.')
 
         elif self.already_have_data:
             print("Already have data, run deep model directly...")
-            # Read in drug_abstract_all
-            pickle_in = open("./drug_abstract_all.pickle", "rb")
-            drug_abstract_all = pickle.load(pickle_in)
-
-            # Read in labels
-            pickle_in = open("./labels.pickle", 'rb')
-            labels = pickle.load(pickle_in)
-
-            # Run deep model.
-            history = DeepModel(drug_abstract_all, labels, num_epochs=self.num_epochs).model_run()
+            # Read in corpus
+            pickle_in = open("./corpus.pickle", 'rb')
+            corpus = pickle.load(pickle_in)
+            abstracts = corpus.Abstract.tolist()
+            labels = corpus.label.tolist()
+            history = DeepModel(input_data_text=abstracts, labels=labels, num_epochs=self.num_epochs).model_run()
             PlotHistory(history).plot_history()
             print('Plot results pdf done.')
 
 
 def main():
-
-    AllTogether(already_have_data=True, process_drug_n=20, pubmed_search_ret_max=20, num_epochs=10).run_all_together()
+    AllTogether(already_have_data=False, process_drug_n=5, pubmed_search_ret_max=10, num_epochs=10).run_all_together()
 
 
 if __name__ == '__main__':

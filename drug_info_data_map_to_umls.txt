@@ -1,0 +1,13 @@
+	Drug_id	Drug_name	Indication	Indi_UMLS_concept	Semtype	cui	Drug-Indication
+0	DB00002	Cetuximab	Metastatic Colorectal Cancers	Secondary malignant neoplasm of large intestine	[neop]	C0346973	Cetuximab Secondary malignant neoplasm of large intestine
+1	DB00002	Cetuximab	Metastatic Squamous Cell Carcinoma of the Head and Neck	Squamous cell carcinoma of the head and neck	[neop]	C1168401	Cetuximab Squamous cell carcinoma of the head and neck
+3	DB00003	Dornase alfa	Cystic Fibrosis (CF)	Cystic Fibrosis	[dsyn]	C0010674	Dornase alfa Cystic Fibrosis
+4	DB00004	Denileukin diftitox	Cutaneous T-Cell Lymphoma (CTCL)	Lymphoma, T-Cell, Cutaneous	[neop]	C0079773	Denileukin diftitox Lymphoma, T-Cell, Cutaneous
+5	DB00005	Etanercept	Ankylosing Spondylitis (AS)	Ankylosing spondylitis	[dsyn]	C0038013	Etanercept Ankylosing spondylitis
+6	DB00005	Etanercept	Graft Versus Host Disease (GVHD)	Graft-vs-Host Disease	[dsyn]	C0018133	Etanercept Graft-vs-Host Disease
+7	DB00005	Etanercept	Hidradenitis Suppurativa (HS)	Hidradenitis Suppurativa	[dsyn]	C0162836	Etanercept Hidradenitis Suppurativa
+8	DB00005	Etanercept	Polyarticular Juvenile Idiopathic Arthritis	Polyarticular juvenile rheumatoid arthritis	[dsyn]	C0311221	Etanercept Polyarticular juvenile rheumatoid arthritis
+9	DB00005	Etanercept	Psoriasis Vulgaris (Plaque Psoriasis)	Psoriasis vulgaris	[dsyn]	C0263361	Etanercept Psoriasis vulgaris
+10	DB00005	Etanercept	Psoriatic Arthritis	Arthritis, Psoriatic	[dsyn]	C0003872	Etanercept Arthritis, Psoriatic
+11	DB00005	Etanercept	Pyoderma Gangrenosum	Pyoderma Gangrenosum	[dsyn]	C0085652	Etanercept Pyoderma Gangrenosum
+12	DB00005	Etanercept	Rheumatoid Arthritis	Rheumatoid Arthritis	[dsyn]	C0003873	Etanercept Rheumatoid Arthritis
