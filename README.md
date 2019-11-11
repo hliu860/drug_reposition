@@ -1,4 +1,7 @@
-# drug_reposition
-From online
+# Drug-Indication predictin by deep learning
+## With application in drug repositioning
 
-Drug repositioning by deep learning
+To run:
+```
+$ python put_all_together.py
+```
