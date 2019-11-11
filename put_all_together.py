@@ -39,7 +39,7 @@ class AllTogether:
             # Metamap indication to UMLS concept.
             print("Metamap indication to UMLS concept.")
             drug_info_data_umls = IndiToUMLS(drug_info_data).run()
-            print("Metamap DONE.s")
+            print("Metamap DONE.")
             drug_info_data_umls.to_csv("drug_info_data_map_to_umls.txt", sep="\t")
             print("drug_info_data_umls has shape ", drug_info_data_umls.shape)
 
