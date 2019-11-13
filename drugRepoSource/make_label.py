@@ -2,17 +2,20 @@ from sklearn.preprocessing import MultiLabelBinarizer
 
 
 class MakeLable:
-    def __init__(self, drug_info_data):
-        self.drug_info_data = drug_info_data
+    def __init__(self, drug_abstract_all):
+        self.drug_abstract_all = drug_abstract_all
 
     def make_label(self):
         """Label is the condition that drug can treat."""
-        corpus = self.drug_info_data.copy()
+        corpus = self.drug_abstract_all.copy()
+        # print(corpus)
 
-        indications = [item.split("/") for item in corpus["Indications-DrugBank"]]
+        cui = [item.split("/") for item in corpus["Indication"]]   # Though it uses multilabel, it is in fact one hot encoding.
+        # print(cui)
+        # cui = corpus["cui"]
         mlb = MultiLabelBinarizer()
-        indications_binary = mlb.fit_transform(indications)
+        indications_binary = mlb.fit_transform(cui)
 
         corpus["label"] = indications_binary.tolist()
-
+        # print(corpus)
         return corpus

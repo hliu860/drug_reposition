@@ -1,8 +1,36 @@
 import numpy as np
 import tensorflow as tf
+import itertools
 
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
+
+
+def tensorflow_shutup():
+    """
+    Make Tensorflow less verbose
+    """
+    try:
+        # noinspection PyPackageRequirements
+        import os
+        from tensorflow import logging
+        import tensorflow as tf
+        tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
+        os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
+        # Monkey patching deprecation utils to shut it up!
+        # Maybe good idea to disable this once after upgrade
+        # noinspection PyUnusedLocal
+        def deprecated(date, instructions, warn_once=True):
+            def deprecated_wrapper(func):
+                return func
+            return deprecated_wrapper
+
+        from tensorflow.python.util import deprecation
+        deprecation.deprecated = deprecated
+
+    except ImportError:
+        pass
 
 
 class DeepModel:
@@ -12,15 +40,18 @@ class DeepModel:
         self.dev_portion = 0.3
         self.embedding_dim = 100
         self.num_epochs = num_epochs
+        # self.abs_n_keep = 5
 
     def pre_process(self):
-        drug_abstract_all = self.input_data_text
+        # drug_abstract_all = self.input_data_text
         # print("drug_abstract_all shape is ", drug_abstract_all.shape)
-        abstracts_len = [len(item) for item in drug_abstract_all.Abstract]
+        print("Input data text is a list of text with length ", len(self.input_data_text))
+
+        abstracts_len = [len(item) for item in self.input_data_text]
         padding_length = np.max(abstracts_len)
         # print("padding_length is ", padding_length)
 
-        sentences = drug_abstract_all.Abstract.tolist()
+        sentences = self.input_data_text
         tokenizer = Tokenizer()
         tokenizer.fit_on_texts(sentences)
 
@@ -44,7 +75,11 @@ class DeepModel:
         dev_data = padded[0:split]
         training_data = padded[split:sample_n]
 
+        # labels = self.labels
+        # _, labels = self.filter_input_data_and_label()
         labels = self.labels
+        # print(labels)
+        print("labels has length ", len(labels), " each label has ", len(labels[0]), ' classes.')
 
         dev_labels = labels[0:split]
         dev_labels = np.array(dev_labels)
@@ -93,6 +128,9 @@ class DeepModel:
         return model
 
     def model_run(self):
+        # Shut up Tensorflow first, make it less verbose.
+        tensorflow_shutup()
+
         training_sequences, training_labels, dev_sequences, dev_labels = self.divide_train_dev_test()
 
         # Get vocabulary size
