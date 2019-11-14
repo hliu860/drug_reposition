@@ -1,0 +1,23 @@
+Dont have data, start from ground...
+Searching drugbank.com for  100  drugs.
+It will take a while.
+10  /  100
+20  /  100
+30  /  100
+40  /  100
+50  /  100
+60  /  100
+70  /  100
+80  /  100
+90  /  100
+100  /  100
+Search drugbank.com returned  100  drugs with shape  (100, 3)
+Cleaning drugs returned  300  drug-indication relations.
+It has shape  (300, 3)
+Metamap indication to UMLS concept.
+Metamap DONE.
+drug_info_data_umls has shape  (210, 7)
+Search drug name and indication name together to Pubmed for abstracts.
+Search Pubmed will return  10  PMIDs.
+Some drug name will not have enough PMID, so the actual PMID will be smaller.
+Some PMID does not have abstract so the actual abstract will be smaller.
