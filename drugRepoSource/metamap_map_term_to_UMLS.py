@@ -3,6 +3,7 @@ from pymetamap import MetaMap
 import subprocess
 import re
 import os
+import sys
 import string
 
 
@@ -22,7 +23,10 @@ Under conda env tf14.
 class RunMetaMap:
     def __init__(self, term):
         self.term = term
-        self.metamap_bin = "/Users/hl/Documents/metamap/public_mm/bin/metamap"
+        if sys.platform == "darwin":
+            self.metamap_bin = "/Users/hl/Documents/metamap/public_mm/bin/metamap"
+        elif sys.platform == "linux":
+            self.metamap_bin = '/home/lhp/Documents/public_mm/bin/metamap'
 
     def run_metamap(self):
         mm = MetaMap.get_instance(self.metamap_bin)
