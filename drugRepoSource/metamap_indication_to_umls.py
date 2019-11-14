@@ -41,7 +41,6 @@ class IndiToUMLS:
         for indi in drug_info_data["Indication"]:
             counter += 1
             term = [indi]
-            print(term, " ", counter, " | ", len(drug_info_data["Indication"]))
 
             # print(term)
             concept = RunMetaMap(term=term).run_metamap()
@@ -64,10 +63,12 @@ class IndiToUMLS:
             concept.reset_index(inplace=True)
 
             if not concept.empty:
+                print(term, " ", counter, " | ", len(drug_info_data["Indication"]), [concept.name[0]])
                 indi_concept_mapped.append(concept.name[0])
                 semtype_all.append(concept.semtypes[0])
                 cui_all.append(concept.cui[0])
             else:
+                print(term, " ", counter, " | ", len(drug_info_data["Indication"]), "no_disease_map")
                 indi_concept_mapped.append("no_disease_map")
                 semtype_all.append("no_disease_map")
                 cui_all.append("no_disease_map")
