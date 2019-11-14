@@ -1,4 +1,5 @@
 import pickle
+import warnings
 
 from drugRepoSource.get_drug_info_from_drugbank import GetDrugInfoFromDrugBank
 
@@ -35,6 +36,8 @@ class AllTogether:
             print("Cleaning drugs returned ", drug_info_data.shape[0], ' drug-indication relations.')
             print("It has shape ", drug_info_data.shape)
             drug_info_data.to_csv("drug_info_data.txt", sep='\t')
+
+            # print(drug_info_data)
 
             # Metamap indication to UMLS concept.
             print("Metamap indication to UMLS concept.")
@@ -90,7 +93,8 @@ class AllTogether:
 
 
 def main():
-    AllTogether(already_have_data=False, process_drug_n=5, pubmed_search_ret_max=10, num_epochs=10).run_all_together()
+    warnings.filterwarnings("ignore", category=FutureWarning)
+    AllTogether(already_have_data=False, process_drug_n=10, pubmed_search_ret_max=10, num_epochs=10).run_all_together()
 
 
 if __name__ == '__main__':

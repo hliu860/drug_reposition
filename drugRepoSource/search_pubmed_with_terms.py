@@ -22,24 +22,29 @@ class SearchMultipleTerms:
 
         drug_abstract_all = pd.DataFrame()
         for index, search_term in enumerate(drug_indi_terms):
-            # drug_search = drug_name[index]
-            # indi_search = indication[index]
 
-            # print()
-            # print(search_term)
+            print(search_term, " ", index + 1, " | ", len(drug_indi_terms))
+
             article_pd = PubMedBiopython(search_term, retmax=self.retmax).search_pubmed()
-            # print(article_pd.shape)
 
-            sentences = article_pd.abstract.tolist()
-            sentences_combine = " ".join(sentences)   # take first 10 abstracts.
+            if not article_pd.empty:
+                sentences = article_pd.abstract.tolist()
+                sentences_combine = " ".join(sentences)   # take first 10 abstracts.
 
-            term_abstract = pd.Series({"Drug-indication-search": search_term,
-                                       "Abstract": sentences_combine,
-                                       "Abs_n": int(len(sentences)),
-                                       "Drug": search_term.split("[TIAB]")[0],
-                                       "Indication": search_term.split("[TIAB]")[1]})
+                term_abstract = pd.Series({"Drug-indication-search": search_term,
+                                           "Abstract": sentences_combine,
+                                           "Abs_n": int(len(sentences)),
+                                           "Drug": search_term.split("[TIAB]")[0],
+                                           "Indication": search_term.split("[TIAB]")[1]})
 
-            drug_abstract_all = drug_abstract_all.append(term_abstract, ignore_index=True)
+                drug_abstract_all = drug_abstract_all.append(term_abstract, ignore_index=True)
+            else:
+                term_abstract = pd.Series({"Drug-indication-search": "no_return",
+                                           "Abstract": "no_return",
+                                           "Abs_n": 0,
+                                           "Drug": 'no_return',
+                                           "Indication": "no_return"})
+                drug_abstract_all = drug_abstract_all.append(term_abstract, ignore_index=True)
 
         # Filter abstract
         print("Filter pubmed search results, discard if return less than ", self.abs_n_keep, " abs.")
