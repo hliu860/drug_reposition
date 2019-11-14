@@ -4,8 +4,3 @@
 2	DB00003	Dornase alfa	Cystic Fibrosis (CF)
 3	DB00004	Denileukin diftitox	Cutaneous T-Cell Lymphoma (CTCL)
 4	DB00005	Etanercept	Ankylosing Spondylitis (AS)/Graft Versus Host Disease (GVHD)/Hidradenitis Suppurativa (HS)/Polyarticular Juvenile Idiopathic Arthritis/Psoriasis Vulgaris (Plaque Psoriasis)/Psoriatic Arthritis/Pyoderma Gangrenosum/Rheumatoid Arthritis/Severe, active Rheumatoid arthritis
-5	DB00006	Bivalirudin	Acute Coronary Syndromes (ACS)/Thrombotic events
-6	DB00007	Leuprolide	Advanced Prostate Cancer/Breast Cancer/Central Precocious Puberty (CPP)/Endometriosis/Infertilities/Pain/Paraphilia/Uterine Leiomyomas/Symptom recurrence
-7	DB00008	Peginterferon alfa-2a	Hepatitis B Chronic Infection/Compensated liver disease
-8	DB00009	Alteplase	Acute Ischemic Stroke (AIS)/Acute Myocardial Infarction (AMI)/Acute massive pulmonary embolism/Central venous access device thrombosis
-9	DB00010	Sermorelin	
