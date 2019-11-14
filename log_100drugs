@@ -15,9 +15,557 @@ Search drugbank.com returned  100  drugs with shape  (100, 3)
 Cleaning drugs returned  300  drug-indication relations.
 It has shape  (300, 3)
 Metamap indication to UMLS concept.
+['Metastatic Colorectal Cancers']   1  |  300 ['Secondary malignant neoplasm of large intestine']
+['Metastatic Squamous Cell Carcinoma of the Head and Neck']   2  |  300 ['Squamous cell carcinoma of the head and neck']
+['Advanced squamous cell carcinoma of the head and neck']   3  |  300 ['Squamous cell carcinoma of the head and neck']
+['Cystic Fibrosis (CF)']   4  |  300 ['Cystic Fibrosis']
+['Cutaneous T-Cell Lymphoma (CTCL)']   5  |  300 ['Lymphoma, T-Cell, Cutaneous']
+['Ankylosing Spondylitis (AS)']   6  |  300 ['Ankylosing spondylitis']
+['Graft Versus Host Disease (GVHD)']   7  |  300 ['Graft-vs-Host Disease']
+['Hidradenitis Suppurativa (HS)']   8  |  300 ['Hidradenitis Suppurativa']
+['Polyarticular Juvenile Idiopathic Arthritis']   9  |  300 ['Polyarticular juvenile rheumatoid arthritis']
+['Psoriasis Vulgaris (Plaque Psoriasis)']   10  |  300 ['Psoriasis vulgaris']
+['Psoriatic Arthritis']   11  |  300 ['Arthritis, Psoriatic']
+['Pyoderma Gangrenosum']   12  |  300 ['Pyoderma Gangrenosum']
+['Rheumatoid Arthritis']   13  |  300 ['Rheumatoid Arthritis']
+['Severe, active Rheumatoid arthritis']   14  |  300 ['Rheumatoid Arthritis']
+['Acute Coronary Syndromes (ACS)']   15  |  300 ['Acute Coronary Syndrome']
+['Thrombotic events']   16  |  300 ['Thrombus']
+['Advanced Prostate Cancer']   17  |  300 ['advanced cancer']
+['Breast Cancer']   18  |  300 ['Malignant neoplasm of breast']
+['Central Precocious Puberty (CPP)']   19  |  300 ['Central Precocious Puberty']
+['Endometriosis']   20  |  300 ['Endometriosis']
+['Infertilities']   21  |  300 ['Infertility']
+['Pain']   22  |  300 no_disease_map
+['Paraphilia']   23  |  300 ['Paraphilias']
+['Uterine Leiomyomas']   24  |  300 ['Uterine Fibroids']
+['Symptom recurrence']   25  |  300 ['Recurrent Malignant Neoplasm']
+['Hepatitis B Chronic Infection']   26  |  300 ['Hepatitis B']
+['Compensated liver disease']   27  |  300 ['Compensated liver disease']
+['Acute Ischemic Stroke (AIS)']   28  |  300 ['Acute Cerebrovascular Accidents']
+['Acute Myocardial Infarction (AMI)']   29  |  300 ['Acute myocardial infarction']
+['Acute massive pulmonary embolism']   30  |  300 ['Acute massive pulmonary embolism']
+['Central venous access device thrombosis']   31  |  300 ['Venous Thrombosis']
+['Anemias']   32  |  300 ['Anemia']
+['Advanced Breast Cancer']   33  |  300 ['advanced cancer']
+['Endometriosis']   34  |  300 ['Endometriosis']
+['Stage I Breast Carcinoma']   35  |  300 ['malignant neoplasm of breast stage I']
+['Advanced carcinoma of the prostate']   36  |  300 ['Prostate carcinoma']
+['Stage M1 hormone dependent carcinoma of the prostate']   37  |  300 ['Prostate carcinoma']
+['Stage T2b carcinoma of the prostate']   38  |  300 ['Prostate carcinoma']
+['Stage T2c carcinoma of the prostate']   39  |  300 ['Prostate carcinoma']
+['Stage T3 carcinoma of the prostate']   40  |  300 ['Prostate carcinoma']
+['Stage T4 carcinoma of the prostate']   41  |  300 ['Prostate carcinoma']
+['Endometrial thinning prior to endometrial ablation for dysfunctional uterine bleeding']   42  |  300 ['Metrorrhagia']
+['Acute Myocardial Infarction (AMI)']   43  |  300 ['Acute myocardial infarction']
+['Cardiovascular Mortality']   44  |  300 no_disease_map
+['Congestive Heart Failure']   45  |  300 ['Congestive heart failure']
+['Anemia caused by Zidovudine']   46  |  300 no_disease_map
+['Anemias']   47  |  300 ['Anemia']
+['Reduction of allogeneic RBC transfusions in patients undergoing elective, noncardiac, nonvascular surgery']   48  |  300 no_disease_map
+['Hypercalcemia']   49  |  300 ['Hypercalcemia']
+['Osteoporosis']   50  |  300 ['Osteoporosis']
+["Symptomatic Paget's disease"]   51  |  300 ['Paget Disease']
+['Refractory Condylomata acuminata of the external']   52  |  300 ['Condylomata Acuminata']
+['Chemotherapy Induced Neutropenia']   53  |  300 ['Neutropenia']
+['Hematopoietic Subsyndrome of Acute Radiation Syndrome']   54  |  300 ['Hematopoietic subsyndrome of acute radiation syndrome']
+['Infection NOS']   55  |  300 ['Communicable Diseases']
+['Bone Marrow Suppression']   56  |  300 ['Bone Marrow Suppression']
+['Delayed engraftment']   57  |  300 no_disease_map
+['Graft Failure']   58  |  300 ['Graft failure']
+['Neutropenia']   59  |  300 ['Neutropenia']
+['Mobilization of hematopoietic progenitor cells into peripheral blood for collection by leukapheresis therapy']   60  |  300 no_disease_map
+['Chronic Hepatitis C Virus (HCV) Infection']   61  |  300 ['Hepatitis C, Chronic']
+['Melanoma']   62  |  300 ['melanoma']
+['Acute Lymphoblastic Leukaemias (ALL)']   63  |  300 ['Acute lymphocytic leukemia']
+['Thyroid Cancers']   64  |  300 ['Malignant neoplasm of thyroid']
+['Thyroid tissue remnants']   65  |  300 no_disease_map
+['Radioiodine ablation of thyroid tissue']   66  |  300 no_disease_map
+['Bleeding']   67  |  300 ['Hemorrhage']
+['Hemophilia A']   68  |  300 no_disease_map
+['Postoperative Hemorrhages']   69  |  300 ['Postoperative Hemorrhage']
+['Bleeding in invasive procedures']   70  |  300 ['Hemorrhage']
+['Perioperative procedures']   71  |  300 no_disease_map
+['Juvenile Idiopathic Arthritis (JIA)']   72  |  300 ['Juvenile arthritis']
+['Neonatal-onset multisystemic inflammatory disease']   73  |  300 ['Inflammatory disorder']
+['Moderate Rheumatoid arthritis']   74  |  300 ['Rheumatoid Arthritis']
+['Recurrent Pericarditis']   75  |  300 no_disease_map
+['Severe Rheumatoid arthritis']   76  |  300 ['Rheumatoid Arthritis']
+['Superficial Eye Infections']   77  |  300 ['Eye Infection']
+['B-Cell Chronic Lymphocytic Leukemia']   78  |  300 ['Chronic Lymphocytic Leukemia']
+["Bruton's agammaglobulinemia"]   79  |  300 ['X-linked agammaglobulinemia']
+['Chronic Idiopathic Thrombocytopenic Purpura']   80  |  300 ['Chronic idiopathic thrombocytopenic purpura']
+['Chronic Inflammatory Demyelinating Polyneuropathy (CIDP)']   81  |  300 ['Polyradiculoneuropathy, Chronic Inflammatory Demyelinating']
+['Common Variable Immunodeficiency']   82  |  300 ['Acquired Hypogammaglobulinemia']
+['Congenital Immunodeficiency']   83  |  300 no_disease_map
+['Kawasaki Syndrome']   84  |  300 ['Mucocutaneous Lymph Node Syndrome']
+['Wiskott-Aldrich Syndrome (WAS)']   85  |  300 no_disease_map
+['Diabetes Mellitus (DM)']   86  |  300 ['Diabetes Mellitus']
+['ST Elevation Myocardial Infarction (STEMI)']   87  |  300 ['ST segment elevation myocardial infarction']
+['Assisted Reproductive Technology therapy']   88  |  300 no_disease_map
+['Chronic Granulomatous Disease (CGD)']   89  |  300 ['Chronic granulomatous disease']
+['Severe, malignant Osteopetrosis']   90  |  300 ['Autosomal Recessive Osteopetrosis']
+['Bleeding']   91  |  300 ['Hemorrhage']
+['Central Diabetes Insipidus']   92  |  300 ['Central Diabetes Insipidus']
+['Nocturia']   93  |  300 ['Nocturia']
+['Polydipsia']   94  |  300 no_disease_map
+['Polyuria']   95  |  300 no_disease_map
+['Primary Nocturnal Enuresis']   96  |  300 no_disease_map
+['Bleeding']   97  |  300 ['Hemorrhage']
+['Thrombocytopenia']   98  |  300 no_disease_map
+['Oral Mucositis']   99  |  300 ['Oral Mucositis']
+['Severe Hypoglycemia']   100  |  300 ['Hypoglycemia']
+['High Risk Neuroblastoma']   101  |  300 ['Central neuroblastoma']
+['Metastatic Melanoma']   102  |  300 ['Metastatic melanoma']
+['Metastatic Renal Cell Carcinoma']   103  |  300 ['Metastatic Renal Cell Cancer']
+['Cervical Dystonia']   104  |  300 no_disease_map
+['Sialorrhea']   105  |  300 ['Sialorrhea']
+['Chronic Idiopathic Urticaria']   106  |  300 ['Chronic idiopathic urticaria']
+['Moderate Asthma']   107  |  300 no_disease_map
+['Severe Asthma']   108  |  300 no_disease_map
+['Hypogonadism']   109  |  300 ['Hypogonadism']
+['Infertilities']   110  |  300 ['Infertility']
+['Diabetes Mellitus (DM)']   111  |  300 ['Diabetes Mellitus']
+['Diabetic Ketoacidosis']   112  |  300 ['Diabetic Ketoacidosis']
+['Gestational Diabetes Mellitus (GDM)']   113  |  300 ['Gestational Diabetes']
+['Hyperglycemias']   114  |  300 ['Hyperglycemia']
+['Diabetes Mellitus (DM)']   115  |  300 ['Diabetes Mellitus']
+['Hyperglycemias']   116  |  300 ['Hyperglycemia']
+['Type 2 Diabetes Mellitus']   117  |  300 ['Diabetes Mellitus, Non-Insulin-Dependent']
+['Dupuytren’s Contracture']   118  |  300 ['Dupuytren Contracture']
+["Peyronie's Disease"]   119  |  300 ['Peyronie Disease']
+['Necrotic tissue']   120  |  300 no_disease_map
+['Hyperuricemia']   121  |  300 ['Hyperuricemia']
+['Controlled Ovarian Stimulation']   122  |  300 no_disease_map
+["Crohn's Disease (CD)"]   123  |  300 ['Crohn Disease']
+['Non-infectious Intermediate, Posterior and Panuveitis']   124  |  300 ['Panuveitis']
+["Pediatric Crohn's Disease"]   125  |  300 ["Pediatric Crohn's disease"]
+['Psoriatic arthritis aggravated']   126  |  300 ['Arthritis, Psoriatic']
+['Pyoderma Gangrenosum']   127  |  300 ['Pyoderma Gangrenosum']
+['Severe Plaque psoriasis']   128  |  300 ['Chronic small plaque psoriasis']
+['Severe Ulcerative Colitis']   129  |  300 ['Ulcerative Colitis']
+['Active Ankylosing spondylitis']   130  |  300 ['Ankylosing spondylitis']
+['Moderate Hidradenitis Suppurativa']   131  |  300 ['Hidradenitis Suppurativa']
+['Moderate Juvenile idiopathic arthritis']   132  |  300 ['Juvenile arthritis']
+['Moderate Plaque psoriasis']   133  |  300 ['Chronic small plaque psoriasis']
+['Moderate Rheumatoid arthritis']   134  |  300 ['Rheumatoid Arthritis']
+['Moderate Ulcerative colitis']   135  |  300 ['Ulcerative Colitis']
+['Severe Hidradenitis Suppurativa']   136  |  300 ['Hidradenitis Suppurativa']
+['Severe Juvenile idiopathic arthritis']   137  |  300 ['Juvenile arthritis']
+['Severe Rheumatoid arthritis']   138  |  300 ['Rheumatoid Arthritis']
+['Adult Onset Growth Hormone Deficiency']   139  |  300 ['Adult-onset growth hormone deficiency']
+['Cachexia']   140  |  300 no_disease_map
+['Childhood-onset Growth Hormone Deficiency']   141  |  300 ['Somatotropin deficiency']
+['Growth Failure']   142  |  300 ['Failure to Thrive']
+['Short Bowel Syndrome (SBS)']   143  |  300 ['Short Bowel Syndrome']
+['Short Stature']   144  |  300 no_disease_map
+["Gaucher's Disease Type 1"]   145  |  300 ['Gaucher Disease, Type 1']
+['Type 3 Gaucher disease']   146  |  300 ['Gaucher Disease, Type 3 (disorder)']
+['Thrombotic events']   147  |  300 ['Thrombus']
+['Leukemia Acute Myeloid Leukemia (AML)']   148  |  300 ['Leukemia, Myelocytic, Acute']
+['Refractory Acute Myeloid Leukemia']   149  |  300 ['Refractory Acute Myeloid Leukemia']
+['Relapsed Acute Myeloid Leukemia']   150  |  300 ['Leukemia, Myelocytic, Acute']
+['Emphysema']   151  |  300 ['Pathological accumulation of air in tissues']
+['Acute Lymphoblastic Leukaemias (ALL)']   152  |  300 ['Acute lymphocytic leukemia']
+['Relapsing Remitting Multiple Sclerosis (RRMS)']   153  |  300 ['Multiple Sclerosis, Relapsing-Remitting']
+['Adenosine Deaminase Deficiency']   154  |  300 ['Adenosine deaminase deficiency']
+['Acute Pyelonephritis']   155  |  300 ['Acute pyelonephritis']
+['Allergies']   156  |  300 ['Hypersensitivity']
+['Hypoalbuminemia']   157  |  300 ['Hypoalbuminemia']
+['Hypoproteinemia']   158  |  300 ['Hypoproteinemia']
+['Hypovolaemia']   159  |  300 no_disease_map
+['Hypovolemic Shock']   160  |  300 ['Hypovolemic Shock']
+['Acute fulminant liver failure']   161  |  300 ['Liver Failure, Acute']
+['Central volume depletion']   162  |  300 no_disease_map
+['Hyperbilirubinemia in neonates']   163  |  300 ['Hyperbilirubinemia']
+['Post-operative albumin loss']   164  |  300 no_disease_map
+['Acute Coronary Syndromes (ACS)']   165  |  300 ['Acute Coronary Syndrome']
+['Thrombotic events']   166  |  300 ['Thrombus']
+['Ankylosing Spondylitis (AS)']   167  |  300 ['Ankylosing spondylitis']
+["Crohn's Disease (CD)"]   168  |  300 ['Crohn Disease']
+['Psoriasis Vulgaris (Plaque Psoriasis)']   169  |  300 ['Psoriasis vulgaris']
+['Psoriatic Arthritis']   170  |  300 ['Arthritis, Psoriatic']
+['Rheumatoid Arthritis']   171  |  300 ['Rheumatoid Arthritis']
+['Ulcerative Colitis']   172  |  300 ['Ulcerative Colitis']
+['Assisted Reproductive Technology therapy']   173  |  300 no_disease_map
+['Ovulation induction therapy']   174  |  300 no_disease_map
+['Stimulation of spermatogenesis therapy']   175  |  300 no_disease_map
+['Acute Circulatory Failure']   176  |  300 ['Shock']
+['Relapsing Remitting Multiple Sclerosis (RRMS)']   177  |  300 ['Multiple Sclerosis, Relapsing-Remitting']
+['Secondary Progressive Multiple Sclerosis (SPMS)']   178  |  300 ['Multiple Sclerosis, Secondary Progressive']
+['Chronic Lymphocytic Leukaemia (CLL)']   179  |  300 ['Chronic Lymphocytic Leukemia']
+['Follicular Lymphoma (FL)']   180  |  300 ['Lymphoma, Follicular']
+['Lymphoma, Large B-Cell, Diffuse (DLBCL)']   181  |  300 ['Diffuse Large B-Cell Lymphoma']
+['Refractory Follicular Lymphoma']   182  |  300 ['Refractory Follicular Lymphoma']
+['Relapsed Follicular Lymphoma']   183  |  300 ['Lymphoma, Follicular']
+['Non-progressive Follicular Lymphoma']   184  |  300 ['Non-follicular lymphoma']
+['Stable Follicular Lymphoma']   185  |  300 ['Lymphoma, Follicular']
+['Parenteral rehydration therapy']   186  |  300 no_disease_map
+['In subcutaneous urography for improving resorption of radiopaque agents']   187  |  300 no_disease_map
+['To increase percutaneous drug absorption']   188  |  300 no_disease_map
+['Type 1 Insulin-Dependent Diabetes Mellitus']   189  |  300 ['Diabetes Mellitus, Insulin-Dependent']
+['Breast Cancer']   190  |  300 ['Malignant neoplasm of breast']
+['Metastatic Adenocarcinoma of the Gastro-Esophageal Junction']   191  |  300 ['Gastroesophageal Junction Adenocarcinoma']
+['Metastatic Adenocarcinoma of the Stomach']   192  |  300 ['Gastric Adenocarcinoma']
+['Metastatic Breast Cancer (MBC)']   193  |  300 ['Carcinoma breast stage IV']
+['Metastatic Gastroesophageal Junction Adenocarcinoma']   194  |  300 ['Gastroesophageal Junction Adenocarcinoma']
+['Chronic Lymphocytic Leukaemia (CLL)']   195  |  300 ['Chronic Lymphocytic Leukemia']
+['Granulomatosis With Polyangiitis']   196  |  300 ['Granulomatosis with polyangiitis']
+['Granulomatosis With Polyangiitis (GPA)']   197  |  300 ['Granulomatosis with polyangiitis']
+['Microscopic Polyangiitis']   198  |  300 ['Microscopic Polyarteritis']
+['Microscopic Polyangiitis (MPA)']   199  |  300 ['Microscopic Polyarteritis']
+["Non-Hodgkin's Lymphoma (NHL)"]   200  |  300 ['Lymphoma, Non-Hodgkin']
+['Pemphigus Vulgaris (PV)']   201  |  300 ['Pemphigus Vulgaris']
+['Moderate Rheumatoid arthritis']   202  |  300 ['Rheumatoid Arthritis']
+['Moderate to severe pemphigus vulgaris']   203  |  300 ['Pemphigus Vulgaris']
+['Severe Rheumatoid arthritis']   204  |  300 ['Rheumatoid Arthritis']
+['Kidney Transplant Rejection']   205  |  300 ['Renal transplant rejection']
+['Kidney Transplant Rejection']   206  |  300 ['Renal transplant rejection']
+['Steroid resistant Heart transplant rejection']   207  |  300 ['Cardiac transplant rejection']
+['Steroid resistant hepatic transplant rejection']   208  |  300 no_disease_map
+['Digoxin toxicity']   209  |  300 no_disease_map
+['Digoxin overdose']   210  |  300 no_disease_map
+["Follicular Non-Hodgkin's Lymphoma"]   211  |  300 ['Lymphoma, Follicular']
+["Follicular Non-Hodgkin's Lymphoma Refractory"]   212  |  300 ['Lymphoma, Follicular']
+['Bacteremia']   213  |  300 ['Bacteremia']
+['Skin and Subcutaneous Tissue Bacterial Infections']   214  |  300 ['Skin Diseases, Bacterial']
+['Right-sided Infective pericarditis']   215  |  300 ['Infectious pericarditis']
+['Acromegaly']   216  |  300 ['Acromegaly']
+['Blepharospasm']   217  |  300 ['Blepharospasm']
+['Cervical Dystonia']   218  |  300 no_disease_map
+['Chronic Migraine']   219  |  300 ['Transformed migraine']
+['Equinus deformity of foot, acquired']   220  |  300 no_disease_map
+['Lower Limb Spasticity']   221  |  300 no_disease_map
+['Sialorrhea']   222  |  300 ['Sialorrhea']
+['Strabismus']   223  |  300 ['Strabismus']
+['Upper Limb Spasticity']   224  |  300 no_disease_map
+['Urinary Bladder, Overactive']   225  |  300 ['Overactive Bladder']
+['Urinary Incontinence (UI)']   226  |  300 no_disease_map
+['Detrusor overactivity, neurologic conditions']   227  |  300 ['nervous system disorder']
+['Hypertonicity disorders of the 7th nerve']   228  |  300 ['Hyperosmolality']
+['Severe axillary hyperhidrosis']   229  |  300 no_disease_map
+['Temporary improvement in the appearance of moderate to severe lateral canthal lines associated with orbicularis oculi activity']   230  |  300 no_disease_map
+['Temporary improvement in the appearance of moderate to severe glabellar lines associated with procerus and corrugator muscle activity']   231  |  300 no_disease_map
+['Diarrhea']   232  |  300 no_disease_map
+['Exocrine Pancreatic Insufficiency']   233  |  300 ['Exocrine pancreatic insufficiency']
+['Gastrointestinal Discomfort']   234  |  300 no_disease_map
+['Fat malabsorption']   235  |  300 ['Intestinal malabsorption of fat']
+['Autoimmune Hemolytic Anemia']   236  |  300 ['Autoimmune hemolytic anemia']
+['B-Cell Chronic Lymphocytic Leukemia']   237  |  300 ['Chronic Lymphocytic Leukemia']
+['Graft Versus Host Disease (GVHD)']   238  |  300 ['Graft-vs-Host Disease']
+['Kidney Transplant Rejection']   239  |  300 ['Renal transplant rejection']
+['Relapsing Remitting Multiple Sclerosis (RRMS)']   240  |  300 ['Multiple Sclerosis, Relapsing-Remitting']
+['T-Cell Prolymphocytic Leukemia']   241  |  300 ['T-Cell Prolymphocytic Leukemia']
+['Conditioning regimens for allogeneic stem cell transplantation therapy']   242  |  300 no_disease_map
+['Prostate Cancer']   243  |  300 ['Prostate carcinoma']
+['Type 1 Mucopolysaccharidosis']   244  |  300 ['Mucopolysaccharidoses']
+['Atopic Dermatitis (AD)']   245  |  300 ['Dermatitis, Atopic']
+['Bone Marrow Transplant Rejection']   246  |  300 ['Bone marrow transplant rejection']
+['Connective Tissue Disorders']   247  |  300 ['Connective Tissue Diseases']
+['Glomerulonephritis minimal lesion']   248  |  300 ['Glomerulonephritis']
+['Glomerulosclerosis, Focal Segmental']   249  |  300 ['Focal glomerulosclerosis']
+['Graft Versus Host Disease (GVHD)']   250  |  300 ['Graft-vs-Host Disease']
+['Heart Transplant Rejection']   251  |  300 ['Cardiac transplant rejection']
+['Idiopathic Thrombocytopenic Purpura']   252  |  300 ['Immune thrombocytopenic purpura']
+['Interstitial Cystitis']   253  |  300 ['Chronic interstitial cystitis']
+['Juvenile Idiopathic Arthritis (JIA)']   254  |  300 ['Juvenile arthritis']
+['Kidney Transplant Rejection']   255  |  300 ['Renal transplant rejection']
+['Liver Transplant Rejection']   256  |  300 ['Liver transplant rejection']
+['Nephritis, Lupus']   257  |  300 ['Lupus Nephritis']
+['Ocular Rosacea']   258  |  300 ['Ocular Rosacea']
+['Psoriasis']   259  |  300 ['Psoriasis']
+['Severe Ulcerative Colitis']   260  |  300 ['Ulcerative Colitis']
+['Uveitis']   261  |  300 no_disease_map
+['Blistering disorder']   262  |  300 ['Disease']
+['Refractory Ulcerative colitis']   263  |  300 ['Ulcerative Colitis']
+['Severe, active Rheumatoid arthritis']   264  |  300 ['Rheumatoid Arthritis']
+['Severe, recalcitrant Plaque psoriasis']   265  |  300 ['Chronic small plaque psoriasis']
+['Suppressed tear production']   266  |  300 no_disease_map
+['Infertilities']   267  |  300 ['Infertility']
+['Assisted Reproductive Technology therapy']   268  |  300 no_disease_map
+['Ovulation induction therapy']   269  |  300 no_disease_map
+['Assisted Reproductive Technology therapy']   270  |  300 no_disease_map
+['Ovulation induction therapy']   271  |  300 no_disease_map
+['Acute cellular rejection']   272  |  300 no_disease_map
+['Antibody-mediated Rejection']   273  |  300 no_disease_map
+['Kidney Transplant Rejection']   274  |  300 ['Renal transplant rejection']
+['Myelodysplastic Syndrome']   275  |  300 ['Childhood Myelodysplastic Syndrome']
+['Induction therapy in renal transplantation']   276  |  300 no_disease_map
+['Hematopoietic Subsyndrome of Acute Radiation Syndrome']   277  |  300 ['Hematopoietic subsyndrome of acute radiation syndrome']
+['Neutropenia']   278  |  300 ['Neutropenia']
+['Neutropenia, Febrile']   279  |  300 ['Febrile Neutropenia']
+['Neutropenia aggravated']   280  |  300 ['Neutropenia']
+['Neutropenia-related sequelae']   281  |  300 ['Neutropenia']
+['Neutrophil suppression']   282  |  300 no_disease_map
+['Severe idiopathic neutropenia']   283  |  300 ['Idiopathic neutropenia']
+['Mobilization of autologous hematopoietic progenitor cells into the peripheral blood for collection by leukapheresis']   284  |  300 no_disease_map
+['Hereditary factor IX deficiency']   285  |  300 ['Hemophilia B']
+['Skin Ulcer']   286  |  300 ['Skin Ulcer']
+["Fabry's Disease"]   287  |  300 ['Fabry Disease']
+['Acromegaly']   288  |  300 ['Acromegaly']
+['Metastatic Carcinoid Tumors']   289  |  300 ['Metastatic carcinoid tumor']
+['Profuse watery diarrhea']   290  |  300 no_disease_map
+['Chronic Hepatitis C Virus (HCV) Infection']   291  |  300 ['Hepatitis C, Chronic']
+['Hairy Cell Leukemia (HCL)']   292  |  300 ['Hairy Cell Leukemia']
+['Kaposi s Sarcoma (KS)']   293  |  300 ['Kaposi Sarcoma']
+['Malignant Melanoma']   294  |  300 ['Cutaneous Melanoma']
+['Abortion induced incomplete']   295  |  300 no_disease_map
+['Inevitable abortion']   296  |  300 ['Inevitable miscarriage']
+['Postpartum Bleeding']   297  |  300 ['Postpartum Hemorrhage']
+['Induction of Uterine contractions']   298  |  300 no_disease_map
+['Reinforcement of labor']   299  |  300 no_disease_map
+['Relapsing Remitting Multiple Sclerosis (RRMS)']   300  |  300 ['Multiple Sclerosis, Relapsing-Remitting']
 Metamap DONE.
-drug_info_data_umls has shape  (210, 7)
+drug_info_data_umls has shape  (211, 7)
 Search drug name and indication name together to Pubmed for abstracts.
-Search Pubmed will return  10  PMIDs.
+Search Pubmed will return  20  PMIDs.
 Some drug name will not have enough PMID, so the actual PMID will be smaller.
 Some PMID does not have abstract so the actual abstract will be smaller.
+Cetuximab [TIAB] Secondary malignant neoplasm of large intestine [TIAB]   1  |  211
+Cetuximab [TIAB] Squamous cell carcinoma of the head and neck [TIAB]   2  |  211
+Dornase alfa [TIAB] Cystic Fibrosis [TIAB]   3  |  211
+Denileukin diftitox [TIAB] Lymphoma, T-Cell, Cutaneous [TIAB]   4  |  211
+Etanercept [TIAB] Ankylosing spondylitis [TIAB]   5  |  211
+Etanercept [TIAB] Graft-vs-Host Disease [TIAB]   6  |  211
+Etanercept [TIAB] Hidradenitis Suppurativa [TIAB]   7  |  211
+Etanercept [TIAB] Polyarticular juvenile rheumatoid arthritis [TIAB]   8  |  211
+Etanercept [TIAB] Psoriasis vulgaris [TIAB]   9  |  211
+Etanercept [TIAB] Arthritis, Psoriatic [TIAB]   10  |  211
+Etanercept [TIAB] Pyoderma Gangrenosum [TIAB]   11  |  211
+Etanercept [TIAB] Rheumatoid Arthritis [TIAB]   12  |  211
+Bivalirudin [TIAB] Acute Coronary Syndrome [TIAB]   13  |  211
+Bivalirudin [TIAB] Thrombus [TIAB]   14  |  211
+Leuprolide [TIAB] advanced cancer [TIAB]   15  |  211
+Leuprolide [TIAB] Malignant neoplasm of breast [TIAB]   16  |  211
+Leuprolide [TIAB] Central Precocious Puberty [TIAB]   17  |  211
+Leuprolide [TIAB] Endometriosis [TIAB]   18  |  211
+Leuprolide [TIAB] Infertility [TIAB]   19  |  211
+Leuprolide [TIAB] Paraphilias [TIAB]   20  |  211
+Leuprolide [TIAB] Uterine Fibroids [TIAB]   21  |  211
+Leuprolide [TIAB] Recurrent Malignant Neoplasm [TIAB]   22  |  211
+Peginterferon alfa-2a [TIAB] Hepatitis B [TIAB]   23  |  211
+Peginterferon alfa-2a [TIAB] Compensated liver disease [TIAB]   24  |  211
+Alteplase [TIAB] Acute Cerebrovascular Accidents [TIAB]   25  |  211
+Alteplase [TIAB] Acute myocardial infarction [TIAB]   26  |  211
+Alteplase [TIAB] Acute massive pulmonary embolism [TIAB]   27  |  211
+Alteplase [TIAB] Venous Thrombosis [TIAB]   28  |  211
+Darbepoetin alfa [TIAB] Anemia [TIAB]   29  |  211
+Goserelin [TIAB] advanced cancer [TIAB]   30  |  211
+Goserelin [TIAB] Endometriosis [TIAB]   31  |  211
+Goserelin [TIAB] malignant neoplasm of breast stage I [TIAB]   32  |  211
+Goserelin [TIAB] Prostate carcinoma [TIAB]   33  |  211
+Goserelin [TIAB] Metrorrhagia [TIAB]   34  |  211
+Reteplase [TIAB] Acute myocardial infarction [TIAB]   35  |  211
+Reteplase [TIAB] Congestive heart failure [TIAB]   36  |  211
+Erythropoietin [TIAB] Anemia [TIAB]   37  |  211
+Salmon Calcitonin [TIAB] Hypercalcemia [TIAB]   38  |  211
+Salmon Calcitonin [TIAB] Osteoporosis [TIAB]   39  |  211
+Salmon Calcitonin [TIAB] Paget Disease [TIAB]   40  |  211
+Interferon alfa-n3 [TIAB] Condylomata Acuminata [TIAB]   41  |  211
+Pegfilgrastim [TIAB] Neutropenia [TIAB]   42  |  211
+Pegfilgrastim [TIAB] Hematopoietic subsyndrome of acute radiation syndrome [TIAB]   43  |  211
+Pegfilgrastim [TIAB] Communicable Diseases [TIAB]   44  |  211
+Sargramostim [TIAB] Bone Marrow Suppression [TIAB]   45  |  211
+Sargramostim [TIAB] Graft failure [TIAB]   46  |  211
+Sargramostim [TIAB] Neutropenia [TIAB]   47  |  211
+Peginterferon alfa-2b [TIAB] Hepatitis C, Chronic [TIAB]   48  |  211
+Peginterferon alfa-2b [TIAB] melanoma [TIAB]   49  |  211
+Asparaginase Escherichia coli [TIAB] Acute lymphocytic leukemia [TIAB]   50  |  211
+Thyrotropin alfa [TIAB] Malignant neoplasm of thyroid [TIAB]   51  |  211
+Antihemophilic factor, human recombinant [TIAB] Hemorrhage [TIAB]   52  |  211
+Antihemophilic factor, human recombinant [TIAB] Postoperative Hemorrhage [TIAB]   53  |  211
+Anakinra [TIAB] Juvenile arthritis [TIAB]   54  |  211
+Anakinra [TIAB] Inflammatory disorder [TIAB]   55  |  211
+Anakinra [TIAB] Rheumatoid Arthritis [TIAB]   56  |  211
+Gramicidin D [TIAB] Eye Infection [TIAB]   57  |  211
+Immune globulin human [TIAB] Chronic Lymphocytic Leukemia [TIAB]   58  |  211
+Immune globulin human [TIAB] X-linked agammaglobulinemia [TIAB]   59  |  211
+Immune globulin human [TIAB] Chronic idiopathic thrombocytopenic purpura [TIAB]   60  |  211
+Immune globulin human [TIAB] Polyradiculoneuropathy, Chronic Inflammatory Demyelinating [TIAB]   61  |  211
+Immune globulin human [TIAB] Acquired Hypogammaglobulinemia [TIAB]   62  |  211
+Immune globulin human [TIAB] Mucocutaneous Lymph Node Syndrome [TIAB]   63  |  211
+Insulin human [TIAB] Diabetes Mellitus [TIAB]   64  |  211
+Tenecteplase [TIAB] ST segment elevation myocardial infarction [TIAB]   65  |  211
+Interferon gamma-1b [TIAB] Chronic granulomatous disease [TIAB]   66  |  211
+Interferon gamma-1b [TIAB] Autosomal Recessive Osteopetrosis [TIAB]   67  |  211
+Desmopressin [TIAB] Hemorrhage [TIAB]   68  |  211
+Desmopressin [TIAB] Central Diabetes Insipidus [TIAB]   69  |  211
+Desmopressin [TIAB] Nocturia [TIAB]   70  |  211
+Coagulation factor VIIa Recombinant Human [TIAB] Hemorrhage [TIAB]   71  |  211
+Palifermin [TIAB] Oral Mucositis [TIAB]   72  |  211
+Glucagon [TIAB] Hypoglycemia [TIAB]   73  |  211
+Aldesleukin [TIAB] Central neuroblastoma [TIAB]   74  |  211
+Aldesleukin [TIAB] Metastatic melanoma [TIAB]   75  |  211
+Aldesleukin [TIAB] Metastatic Renal Cell Cancer [TIAB]   76  |  211
+Botulinum Toxin Type B [TIAB] Sialorrhea [TIAB]   77  |  211
+Omalizumab [TIAB] Chronic idiopathic urticaria [TIAB]   78  |  211
+Lutropin alfa [TIAB] Hypogonadism [TIAB]   79  |  211
+Lutropin alfa [TIAB] Infertility [TIAB]   80  |  211
+Insulin lispro [TIAB] Diabetes Mellitus [TIAB]   81  |  211
+Insulin lispro [TIAB] Diabetic Ketoacidosis [TIAB]   82  |  211
+Insulin lispro [TIAB] Gestational Diabetes [TIAB]   83  |  211
+Insulin lispro [TIAB] Hyperglycemia [TIAB]   84  |  211
+Insulin glargine [TIAB] Diabetes Mellitus [TIAB]   85  |  211
+Insulin glargine [TIAB] Hyperglycemia [TIAB]   86  |  211
+Insulin glargine [TIAB] Diabetes Mellitus, Non-Insulin-Dependent [TIAB]   87  |  211
+Collagenase clostridium histolyticum [TIAB] Dupuytren Contracture [TIAB]   88  |  211
+Collagenase clostridium histolyticum [TIAB] Peyronie Disease [TIAB]   89  |  211
+Rasburicase [TIAB] Hyperuricemia [TIAB]   90  |  211
+Adalimumab [TIAB] Crohn Disease [TIAB]   91  |  211
+Adalimumab [TIAB] Panuveitis [TIAB]   92  |  211
+Adalimumab [TIAB] Pediatric Crohn's disease [TIAB]   93  |  211
+Adalimumab [TIAB] Arthritis, Psoriatic [TIAB]   94  |  211
+Adalimumab [TIAB] Pyoderma Gangrenosum [TIAB]   95  |  211
+Adalimumab [TIAB] Chronic small plaque psoriasis [TIAB]   96  |  211
+Adalimumab [TIAB] Ulcerative Colitis [TIAB]   97  |  211
+Adalimumab [TIAB] Ankylosing spondylitis [TIAB]   98  |  211
+Adalimumab [TIAB] Hidradenitis Suppurativa [TIAB]   99  |  211
+Adalimumab [TIAB] Juvenile arthritis [TIAB]   100  |  211
+Adalimumab [TIAB] Rheumatoid Arthritis [TIAB]   101  |  211
+Somatotropin [TIAB] Adult-onset growth hormone deficiency [TIAB]   102  |  211
+Somatotropin [TIAB] Somatotropin deficiency [TIAB]   103  |  211
+Somatotropin [TIAB] Failure to Thrive [TIAB]   104  |  211
+Somatotropin [TIAB] Short Bowel Syndrome [TIAB]   105  |  211
+Imiglucerase [TIAB] Gaucher Disease, Type 1 [TIAB]   106  |  211
+Imiglucerase [TIAB] Gaucher Disease, Type 3 (disorder) [TIAB]   107  |  211
+Abciximab [TIAB] Thrombus [TIAB]   108  |  211
+Gemtuzumab ozogamicin [TIAB] Leukemia, Myelocytic, Acute [TIAB]   109  |  211
+Gemtuzumab ozogamicin [TIAB] Refractory Acute Myeloid Leukemia [TIAB]   110  |  211
+Alpha-1-proteinase inhibitor [TIAB] Pathological accumulation of air in tissues [TIAB]   111  |  211
+Pegaspargase [TIAB] Acute lymphocytic leukemia [TIAB]   112  |  211
+Interferon beta-1a [TIAB] Multiple Sclerosis, Relapsing-Remitting [TIAB]   113  |  211
+Pegademase [TIAB] Adenosine deaminase deficiency [TIAB]   114  |  211
+Human Serum Albumin [TIAB] Acute pyelonephritis [TIAB]   115  |  211
+Human Serum Albumin [TIAB] Hypersensitivity [TIAB]   116  |  211
+Human Serum Albumin [TIAB] Hypoalbuminemia [TIAB]   117  |  211
+Human Serum Albumin [TIAB] Hypoproteinemia [TIAB]   118  |  211
+Human Serum Albumin [TIAB] Hypovolemic Shock [TIAB]   119  |  211
+Human Serum Albumin [TIAB] Liver Failure, Acute [TIAB]   120  |  211
+Human Serum Albumin [TIAB] Hyperbilirubinemia [TIAB]   121  |  211
+Eptifibatide [TIAB] Acute Coronary Syndrome [TIAB]   122  |  211
+Eptifibatide [TIAB] Thrombus [TIAB]   123  |  211
+Infliximab [TIAB] Ankylosing spondylitis [TIAB]   124  |  211
+Infliximab [TIAB] Crohn Disease [TIAB]   125  |  211
+Infliximab [TIAB] Psoriasis vulgaris [TIAB]   126  |  211
+Infliximab [TIAB] Arthritis, Psoriatic [TIAB]   127  |  211
+Infliximab [TIAB] Rheumatoid Arthritis [TIAB]   128  |  211
+Infliximab [TIAB] Ulcerative Colitis [TIAB]   129  |  211
+Vasopressin [TIAB] Shock [TIAB]   130  |  211
+Interferon beta-1b [TIAB] Multiple Sclerosis, Relapsing-Remitting [TIAB]   131  |  211
+Interferon beta-1b [TIAB] Multiple Sclerosis, Secondary Progressive [TIAB]   132  |  211
+Hyaluronidase (ovine) [TIAB] Chronic Lymphocytic Leukemia [TIAB]   133  |  211
+Hyaluronidase (ovine) [TIAB] Lymphoma, Follicular [TIAB]   134  |  211
+Hyaluronidase (ovine) [TIAB] Diffuse Large B-Cell Lymphoma [TIAB]   135  |  211
+Hyaluronidase (ovine) [TIAB] Refractory Follicular Lymphoma [TIAB]   136  |  211
+Hyaluronidase (ovine) [TIAB] Non-follicular lymphoma [TIAB]   137  |  211
+Insulin Pork [TIAB] Diabetes Mellitus, Insulin-Dependent [TIAB]   138  |  211
+Trastuzumab [TIAB] Malignant neoplasm of breast [TIAB]   139  |  211
+Trastuzumab [TIAB] Gastroesophageal Junction Adenocarcinoma [TIAB]   140  |  211
+Trastuzumab [TIAB] Gastric Adenocarcinoma [TIAB]   141  |  211
+Trastuzumab [TIAB] Carcinoma breast stage IV [TIAB]   142  |  211
+Rituximab [TIAB] Chronic Lymphocytic Leukemia [TIAB]   143  |  211
+Rituximab [TIAB] Granulomatosis with polyangiitis [TIAB]   144  |  211
+Rituximab [TIAB] Microscopic Polyarteritis [TIAB]   145  |  211
+Rituximab [TIAB] Lymphoma, Non-Hodgkin [TIAB]   146  |  211
+Rituximab [TIAB] Pemphigus Vulgaris [TIAB]   147  |  211
+Rituximab [TIAB] Rheumatoid Arthritis [TIAB]   148  |  211
+Basiliximab [TIAB] Renal transplant rejection [TIAB]   149  |  211
+Muromonab [TIAB] Renal transplant rejection [TIAB]   150  |  211
+Muromonab [TIAB] Cardiac transplant rejection [TIAB]   151  |  211
+Ibritumomab tiuxetan [TIAB] Lymphoma, Follicular [TIAB]   152  |  211
+Daptomycin [TIAB] Bacteremia [TIAB]   153  |  211
+Daptomycin [TIAB] Skin Diseases, Bacterial [TIAB]   154  |  211
+Daptomycin [TIAB] Infectious pericarditis [TIAB]   155  |  211
+Pegvisomant [TIAB] Acromegaly [TIAB]   156  |  211
+Botulinum toxin type A [TIAB] Blepharospasm [TIAB]   157  |  211
+Botulinum toxin type A [TIAB] Transformed migraine [TIAB]   158  |  211
+Botulinum toxin type A [TIAB] Sialorrhea [TIAB]   159  |  211
+Botulinum toxin type A [TIAB] Strabismus [TIAB]   160  |  211
+Botulinum toxin type A [TIAB] Overactive Bladder [TIAB]   161  |  211
+Botulinum toxin type A [TIAB] nervous system disorder [TIAB]   162  |  211
+Botulinum toxin type A [TIAB] Hyperosmolality [TIAB]   163  |  211
+Pancrelipase [TIAB] Exocrine pancreatic insufficiency [TIAB]   164  |  211
+Pancrelipase [TIAB] Intestinal malabsorption of fat [TIAB]   165  |  211
+Alemtuzumab [TIAB] Autoimmune hemolytic anemia [TIAB]   166  |  211
+Alemtuzumab [TIAB] Chronic Lymphocytic Leukemia [TIAB]   167  |  211
+Alemtuzumab [TIAB] Graft-vs-Host Disease [TIAB]   168  |  211
+Alemtuzumab [TIAB] Renal transplant rejection [TIAB]   169  |  211
+Alemtuzumab [TIAB] Multiple Sclerosis, Relapsing-Remitting [TIAB]   170  |  211
+Alemtuzumab [TIAB] T-Cell Prolymphocytic Leukemia [TIAB]   171  |  211
+Capromab pendetide [TIAB] Prostate carcinoma [TIAB]   172  |  211
+Laronidase [TIAB] Mucopolysaccharidoses [TIAB]   173  |  211
+Cyclosporine [TIAB] Dermatitis, Atopic [TIAB]   174  |  211
+Cyclosporine [TIAB] Bone marrow transplant rejection [TIAB]   175  |  211
+Cyclosporine [TIAB] Connective Tissue Diseases [TIAB]   176  |  211
+Cyclosporine [TIAB] Glomerulonephritis [TIAB]   177  |  211
+Cyclosporine [TIAB] Focal glomerulosclerosis [TIAB]   178  |  211
+Cyclosporine [TIAB] Graft-vs-Host Disease [TIAB]   179  |  211
+Cyclosporine [TIAB] Cardiac transplant rejection [TIAB]   180  |  211
+Cyclosporine [TIAB] Immune thrombocytopenic purpura [TIAB]   181  |  211
+Cyclosporine [TIAB] Chronic interstitial cystitis [TIAB]   182  |  211
+Cyclosporine [TIAB] Juvenile arthritis [TIAB]   183  |  211
+Cyclosporine [TIAB] Renal transplant rejection [TIAB]   184  |  211
+Cyclosporine [TIAB] Liver transplant rejection [TIAB]   185  |  211
+Cyclosporine [TIAB] Lupus Nephritis [TIAB]   186  |  211
+Cyclosporine [TIAB] Ocular Rosacea [TIAB]   187  |  211
+Cyclosporine [TIAB] Psoriasis [TIAB]   188  |  211
+Cyclosporine [TIAB] Ulcerative Colitis [TIAB]   189  |  211
+Cyclosporine [TIAB] Disease [TIAB]   190  |  211
+Cyclosporine [TIAB] Rheumatoid Arthritis [TIAB]   191  |  211
+Cyclosporine [TIAB] Chronic small plaque psoriasis [TIAB]   192  |  211
+Urofollitropin [TIAB] Infertility [TIAB]   193  |  211
+Antithymocyte immunoglobulin (rabbit) [TIAB] Renal transplant rejection [TIAB]   194  |  211
+Antithymocyte immunoglobulin (rabbit) [TIAB] Childhood Myelodysplastic Syndrome [TIAB]   195  |  211
+Filgrastim [TIAB] Hematopoietic subsyndrome of acute radiation syndrome [TIAB]   196  |  211
+Filgrastim [TIAB] Neutropenia [TIAB]   197  |  211
+Filgrastim [TIAB] Febrile Neutropenia [TIAB]   198  |  211
+Filgrastim [TIAB] Idiopathic neutropenia [TIAB]   199  |  211
+Coagulation Factor IX (Recombinant) [TIAB] Hemophilia B [TIAB]   200  |  211
+Becaplermin [TIAB] Skin Ulcer [TIAB]   201  |  211
+Agalsidase beta [TIAB] Fabry Disease [TIAB]   202  |  211
+Octreotide [TIAB] Acromegaly [TIAB]   203  |  211
+Octreotide [TIAB] Metastatic carcinoid tumor [TIAB]   204  |  211
+Interferon alfa-2b [TIAB] Hepatitis C, Chronic [TIAB]   205  |  211
+Interferon alfa-2b [TIAB] Hairy Cell Leukemia [TIAB]   206  |  211
+Interferon alfa-2b [TIAB] Kaposi Sarcoma [TIAB]   207  |  211
+Interferon alfa-2b [TIAB] Cutaneous Melanoma [TIAB]   208  |  211
+Oxytocin [TIAB] Inevitable miscarriage [TIAB]   209  |  211
+Oxytocin [TIAB] Postpartum Hemorrhage [TIAB]   210  |  211
+Natalizumab [TIAB] Multiple Sclerosis, Relapsing-Remitting [TIAB]   211  |  211
+Filter pubmed search results, discard if return less than  5  abs.
+and discard if pubmed has no return using search term.
+Search term is drug [TIAB] indication [TIAB]
+drug_abstract_all has shape  (138, 6)
+Make label returned corpus with shape  (138, 7)
+corpus has the label with length 99  it means this many classes.
+Saved corpus.
+Read in corpus.
+Input abstracts and labels to NN model.
+Input data text is a list of text with length  138
+labels has length  138  each label has  99  classes.
+padding_length is  45558
+vocab_size is  22293
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+embedding (Embedding)        (None, 45558, 100)        2229400   
+_________________________________________________________________
+conv1d (Conv1D)              (None, 45554, 64)         32064     
+_________________________________________________________________
+max_pooling1d (MaxPooling1D) (None, 11388, 64)         0         
+_________________________________________________________________
+bidirectional (Bidirectional (None, 11388, 32)         10368     
+_________________________________________________________________
+bidirectional_1 (Bidirection (None, 594)               784080    
+_________________________________________________________________
+dense (Dense)                (None, 198)               117810    
+_________________________________________________________________
+dense_1 (Dense)              (None, 99)                19701     
+=================================================================
+Total params: 3,193,423
+Trainable params: 3,193,423
+Non-trainable params: 0
+_________________________________________________________________
+None
+Train on 97 samples, validate on 41 samples
+Epoch 1/100

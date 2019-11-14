@@ -1,7 +1,3 @@
-
-### MetaMap ERROR: MetaMap supports ASCII-only input.
-The input contains 1 non-ASCII char: "’".
-Remove all non-ASCII chars from input before trying again!
 /home/lhp/anaconda3/envs/tf13/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:526: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
   _np_qint8 = np.dtype([("qint8", np.int8, 1)])
 /home/lhp/anaconda3/envs/tf13/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:527: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
@@ -15,14 +11,28 @@ Remove all non-ASCII chars from input before trying again!
 /home/lhp/anaconda3/envs/tf13/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:535: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
   np_resource = np.dtype([("resource", np.ubyte, 1)])
 Traceback (most recent call last):
-  File "put_all_together.py", line 99, in <module>
+  File "put_all_together.py", line 101, in <module>
     main()
-  File "put_all_together.py", line 95, in main
-    AllTogether(already_have_data=False, process_drug_n=100, pubmed_search_ret_max=10, num_epochs=100).run_all_together()
-  File "put_all_together.py", line 53, in run_all_together
-    drug_abstract_all = SearchMultipleTerms(search_terms, retmax=self.pubmed_search_ret_max).search_pubmed()
-  File "/home/lhp/Documents/drugRepo/drug_reposition/drugRepoSource/search_pubmed_with_terms.py", line 33, in search_pubmed
-    sentences = article_pd.abstract.tolist()
-  File "/home/lhp/anaconda3/envs/tf13/lib/python3.7/site-packages/pandas/core/generic.py", line 5179, in __getattr__
-    return object.__getattribute__(self, name)
-AttributeError: 'DataFrame' object has no attribute 'abstract'
+  File "put_all_together.py", line 97, in main
+    AllTogether(already_have_data=False, process_drug_n=100, pubmed_search_ret_max=20, num_epochs=100).run_all_together()
+  File "put_all_together.py", line 79, in run_all_together
+    history = DeepModel(input_data_text=abstracts, labels=labels, num_epochs=self.num_epochs).model_run()
+  File "/home/lhp/Documents/drugRepo/drug_reposition/drugRepoSource/deep_nn_model.py", line 148, in model_run
+    verbose=2)
+  File "/home/lhp/anaconda3/envs/tf13/lib/python3.7/site-packages/tensorflow/python/keras/engine/training.py", line 880, in fit
+    validation_steps=validation_steps)
+  File "/home/lhp/anaconda3/envs/tf13/lib/python3.7/site-packages/tensorflow/python/keras/engine/training_arrays.py", line 329, in model_iteration
+    batch_outs = f(ins_batch)
+  File "/home/lhp/anaconda3/envs/tf13/lib/python3.7/site-packages/tensorflow/python/keras/backend.py", line 3076, in __call__
+    run_metadata=self.run_metadata)
+  File "/home/lhp/anaconda3/envs/tf13/lib/python3.7/site-packages/tensorflow/python/client/session.py", line 1439, in __call__
+    run_metadata_ptr)
+  File "/home/lhp/anaconda3/envs/tf13/lib/python3.7/site-packages/tensorflow/python/framework/errors_impl.py", line 528, in __exit__
+    c_api.TF_GetCode(self.status.status))
+tensorflow.python.framework.errors_impl.ResourceExhaustedError: OOM when allocating tensor with shape[32,32] and type float on /job:localhost/replica:0/task:0/device:GPU:0 by allocator GPU_0_bfc
+	 [[{{node bidirectional_1/TensorArrayUnstack_1/TensorArrayScatter/TensorArrayScatterV3}}]]
+Hint: If you want to see a list of allocated tensors when OOM happens, add report_tensor_allocations_upon_oom to RunOptions for current allocation info.
+
+	 [[{{node loss/dense_1_loss/broadcast_weights/assert_broadcastable/is_valid_shape/has_valid_nonscalar_shape/has_invalid_dims/concat}}]]
+Hint: If you want to see a list of allocated tensors when OOM happens, add report_tensor_allocations_upon_oom to RunOptions for current allocation info.
+
