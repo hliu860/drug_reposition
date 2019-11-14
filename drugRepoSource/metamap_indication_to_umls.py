@@ -37,8 +37,13 @@ class IndiToUMLS:
         indi_concept_mapped = []
         semtype_all = []
         cui_all = []
+        counter = 0
         for indi in drug_info_data["Indication"]:
+            counter += 1
             term = [indi]
+            print(term, " ", counter, " | ", len(drug_info_data["Indication"]))
+
+            # print(term)
             concept = RunMetaMap(term=term).run_metamap()
 
             # Pick concept, also look at the semtype.

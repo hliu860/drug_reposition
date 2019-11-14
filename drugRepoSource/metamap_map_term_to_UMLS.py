@@ -3,6 +3,8 @@ from pymetamap import MetaMap
 import subprocess
 import re
 import os
+import string
+
 
 """
 Under conda env tf14.
@@ -25,6 +27,9 @@ class RunMetaMap:
     def run_metamap(self):
         mm = MetaMap.get_instance(self.metamap_bin)
         sentence = self.term
+        printable = set(string.printable)
+        sent_filtered = ["".join(filter(lambda x: x in printable, item)) for item in sentence]
+        sentence = sent_filtered
 
         concepts, error = mm.extract_concepts(
             sentences=sentence, compute_all_mappings=False,
@@ -54,7 +59,7 @@ class RunMetaMap:
 
 
 def main():
-    # term = ['Cystic Fibrosis (CF)']
+    term = ['Cystic Fibrosis (CF)']
     # term = ["heart attack"]
     # term = ["Metastatic Colorectal Cancers"]
     # term = ["Metastatic Squamous Cell Carcinoma of the Head and Neck"]
@@ -66,7 +71,7 @@ def main():
     # term = ["Juvenile Idiopathic Arthritis (JIA)"]
     # term = ["Anemias"]
     # term = ["Chronic Hepatitis C Virus (HCV) Infection"]
-    term = ["Melanoma"]
+    # term = ["Melanoma"]
     # term = ["Acute Lymphoblastic Leukaemias (ALL)"]
     # term = ["Thyroid Cancers"]  # cancers needs to be changed to cancer
     concept_term = RunMetaMap(term=term).run_metamap()

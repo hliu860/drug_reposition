@@ -13,3 +13,20 @@
 11	DB00005	Etanercept	Pyoderma Gangrenosum
 12	DB00005	Etanercept	Rheumatoid Arthritis
 13	DB00005	Etanercept	Severe, active Rheumatoid arthritis
+14	DB00006	Bivalirudin	Acute Coronary Syndromes (ACS)
+15	DB00006	Bivalirudin	Thrombotic events
+16	DB00007	Leuprolide	Advanced Prostate Cancer
+17	DB00007	Leuprolide	Breast Cancer
+18	DB00007	Leuprolide	Central Precocious Puberty (CPP)
+19	DB00007	Leuprolide	Endometriosis
+20	DB00007	Leuprolide	Infertilities
+21	DB00007	Leuprolide	Pain
+22	DB00007	Leuprolide	Paraphilia
+23	DB00007	Leuprolide	Uterine Leiomyomas
+24	DB00007	Leuprolide	Symptom recurrence
+25	DB00008	Peginterferon alfa-2a	Hepatitis B Chronic Infection
+26	DB00008	Peginterferon alfa-2a	Compensated liver disease
+27	DB00009	Alteplase	Acute Ischemic Stroke (AIS)
+28	DB00009	Alteplase	Acute Myocardial Infarction (AMI)
+29	DB00009	Alteplase	Acute massive pulmonary embolism
+30	DB00009	Alteplase	Central venous access device thrombosis
