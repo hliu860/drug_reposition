@@ -101,7 +101,7 @@ class AllTogether:
             print("Input abstracts and labels to NN model.")
             abstracts = corpus.Abstract.tolist()
             labels = corpus.label.tolist()
-            print("There are ", labels.count(0), " 0 and ", labels.count(1), " 1 in the labels.")
+            print("There are ", labels.count(0), " 0s and ", labels.count(1), " 1s in the labels.")
             history = DeepModel(input_data_text=abstracts, labels=labels, num_epochs=self.num_epochs).model_run()
             # Save history
             # pickle_out = open("./history.pickle", 'wb')
@@ -131,12 +131,8 @@ class AllTogether:
 
 
 def main():
-    warnings.filterwarnings("ignore", category=FutureWarning)
-<<<<<<< HEAD
-    AllTogether(already_have_data=False, process_drug_n=100, pubmed_search_ret_max=20, num_epochs=2).run_all_together()
-=======
-    AllTogether(already_have_data=True, process_drug_n=100, pubmed_search_ret_max=20, num_epochs=100).run_all_together()
->>>>>>> refs/remotes/origin/hp
+    AllTogether(already_have_data=False, process_drug_n=5, pubmed_search_ret_max=10, num_epochs=2).run_all_together()
+
 
 
 if __name__ == '__main__':
