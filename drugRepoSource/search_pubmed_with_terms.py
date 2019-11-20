@@ -7,7 +7,7 @@ class SearchMultipleTerms:
     def __init__(self, terms, retmax):
         self.search_terms = terms
         self.retmax = retmax
-        self.abs_n_keep = 5
+        self.abs_n_keep = 1
 
     def search_pubmed(self):
         search_terms = self.search_terms
@@ -31,11 +31,14 @@ class SearchMultipleTerms:
                 sentences = article_pd.abstract.tolist()
                 sentences_combine = " ".join(sentences)   # take first 10 abstracts.
 
+                drug_keep = search_term.split(" [TIAB] ")[0]
+                indi_keep = search_term.split(" [TIAB] ")[1].split(" [TIAB]")[0]
                 term_abstract = pd.Series({"Drug-indication-search": search_term,
                                            "Abstract": sentences_combine,
                                            "Abs_n": int(len(sentences)),
-                                           "Drug": search_term.split("[TIAB]")[0],
-                                           "Indication": search_term.split("[TIAB]")[1]})
+                                           "Drug": drug_keep,
+                                           "Indication": indi_keep,
+                                           "Drug-Indi": drug_keep + " " + indi_keep})
 
                 drug_abstract_all = drug_abstract_all.append(term_abstract, ignore_index=True)
             else:
@@ -43,7 +46,8 @@ class SearchMultipleTerms:
                                            "Abstract": "no_return",
                                            "Abs_n": 0,
                                            "Drug": 'no_return',
-                                           "Indication": "no_return"})
+                                           "Indication": "no_return",
+                                           "Drug-Indi": 'no_return'})
                 drug_abstract_all = drug_abstract_all.append(term_abstract, ignore_index=True)
 
         # Filter abstract

@@ -6,6 +6,11 @@ from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 
+# setattr(tf.contrib.rnn.GRUCell, '__deepcopy__', lambda self, _: self)
+# setattr(tf.contrib.rnn.BasicLSTMCell, '__deepcopy__', lambda self, _: self)
+# setattr(tf.contrib.rnn.MultiRNNCell, '__deepcopy__', lambda self, _: self)
+
+
 def tensorflow_shutup():
     """
     Make Tensorflow less verbose
@@ -38,7 +43,7 @@ class DeepModel:
         self.input_data_text = input_data_text
         self.labels = labels
         self.dev_portion = 0.3
-        self.embedding_dim = 100
+        self.embedding_dim = 32
         self.num_epochs = num_epochs
         # self.abs_n_keep = 5
 
@@ -46,9 +51,13 @@ class DeepModel:
         # drug_abstract_all = self.input_data_text
         # print("drug_abstract_all shape is ", drug_abstract_all.shape)
         print("Input data text is a list of text with length ", len(self.input_data_text))
+        print("Input label is a list of 0 and 1 with length", len(self.labels))
 
         abstracts_len = [len(item) for item in self.input_data_text]
-        padding_length = np.max(abstracts_len)
+        # print(abstracts_len)
+        # padding_length = np.max(abstracts_len)
+        padding_length = np.median(abstracts_len)
+        padding_length = int(0.5 * padding_length)
         # print("padding_length is ", padding_length)
 
         sentences = self.input_data_text
@@ -79,7 +88,8 @@ class DeepModel:
         # _, labels = self.filter_input_data_and_label()
         labels = self.labels
         # print(labels)
-        print("labels has length ", len(labels), " each label has ", len(labels[0]), ' classes.')
+        # print("labels has length ", len(labels), " each label has ", len(labels[0]), ' classes.')
+        print("Labels have length", len(labels), " with all 0 and 1.")
 
         dev_labels = labels[0:split]
         dev_labels = np.array(dev_labels)
@@ -90,7 +100,7 @@ class DeepModel:
 
     def model_build(self, vocab_size, padding_length):
 
-        class_n = len(self.labels[0])
+        # class_n = len(self.labels[0])
         print("padding_length is ", padding_length)
         print('vocab_size is ', vocab_size)
 
@@ -98,8 +108,8 @@ class DeepModel:
         model.add(tf.keras.layers.Embedding(input_dim=vocab_size+1, output_dim=self.embedding_dim, input_length=padding_length))
         # model.add(tf.keras.layers.Dropout(0.1))
         # model.add(tf.keras.layers.Conv1D(64, 5, activation="relu"))
-        model.add(tf.keras.layers.Conv1D(64, 5, activation="relu"))
-        model.add(tf.keras.layers.MaxPooling1D(pool_size=4))
+        # model.add(tf.keras.layers.Conv1D(16, 5, activation="relu"))
+        # model.add(tf.keras.layers.MaxPooling1D(pool_size=4))
         # model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(class_n * 1, return_sequences=False)))
 
         # model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(64, return_sequences=True)))
@@ -107,22 +117,27 @@ class DeepModel:
 
         # model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(32)))
         # model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(class_n*2, return_sequences=True)))
-        model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(16, return_sequences=True)))
+        # model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(16, return_sequences=True)))
         # model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(class_n*2)))
-        model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(class_n*3)))
-        model.add(tf.keras.layers.Dense(class_n*2, activation="relu"))
+        # model.add(tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(class_n*3)))
+        # model.add(tf.keras.layers.GRU(1024))
+        # model.add(tf.keras.layers.LSTM(class_n*3))
+        model.add(tf.keras.layers.LSTM(32))
+        # model.add(tf.keras.layers.Dense(class_n*2, activation="relu"))
         # model.add(tf.keras.layers.Dropout(0.1))
 
         # model.add(tf.keras.layers.Flatten)
         # multi-label classification with class_n labels.
         # model.add(tf.keras.layers.Dense(class_n, activation="sigmoid"))
-        model.add(tf.keras.layers.Dense(class_n, activation="softmax"))
+        # model.add(tf.keras.layers.Dense(class_n, activation="softmax"))
+        model.add(tf.keras.layers.Dense(1, activation="sigmoid"))
         # model.add(tf.keras.layers.Dense(1, activation="sigmoid"))
 
         # metric_use = tf.keras.metrics.BinaryAccuracy()   # ???????????????????
         # metric_use = tf.keras.metrics.Accuracy()   # ???????????????????
         # model.compile(loss="binary_crossentropy", optimizer="adam", metrics=['accuracy'])
-        model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=['accuracy'])
+        # model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=['accuracy'])
+        model.compile(loss="binary_crossentropy", optimizer="adam", metrics=['accuracy'])
         # model.compile(loss="binary_crossentropy", optimizer="adam", metrics=[metric_use])
         print(model.summary())
         return model
@@ -146,5 +161,6 @@ class DeepModel:
                             epochs=self.num_epochs,
                             validation_data=(dev_sequences, dev_labels),
                             verbose=2)
+        # tf.saved_model.save(history, "./saved_model/")
         print("Training done.")
         return history

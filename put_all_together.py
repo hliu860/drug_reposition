@@ -9,6 +9,7 @@ from drugRepoSource.search_pubmed_with_terms import SearchMultipleTerms
 from drugRepoSource.deep_nn_model import DeepModel
 from drugRepoSource.plot_history import PlotHistory
 from drugRepoSource.metamap_indication_to_umls import IndiToUMLS
+from drugRepoSource.make_drug_disease_and_drug_non_disease_pairs import DrugDiseaseDrugNonDiseasePairs
 
 
 class AllTogether:
@@ -46,19 +47,43 @@ class AllTogether:
             drug_info_data_umls.to_csv("drug_info_data_map_to_umls.txt", sep="\t")
             print("drug_info_data_umls has shape ", drug_info_data_umls.shape)
 
+            """
+            Make drug-disease pairs and drug-non_disease pairs.
+            drug-disease pair is 1, drug-non_disease pair is 0.            
+            """
+            # print(drug_info_data_umls)
+            drug_info_data_with_non_disease = DrugDiseaseDrugNonDiseasePairs(drug_info_data_umls).run()
+            # print(drug_info_data_with_non_disease)
+            pickle_out = open("./drug_info_data_with_non_disease.pickle", 'wb')
+            pickle.dump(drug_info_data_with_non_disease, pickle_out)
+            pickle_out.close()
+            # print("Saved corpus.")
+            # Read in
+            # pickle_in = open("./corpus.pickle", 'rb')
+            # corpus = pickle.load(pickle_in)
+
             # Search drug name to PubMed. Return abstracts,
             print("Search drug name and indication name together to Pubmed for abstracts.")
             print("Search Pubmed will return ", self.pubmed_search_ret_max, ' PMIDs.')
             print("Some drug name will not have enough PMID, so the actual PMID will be smaller.")
             print("Some PMID does not have abstract so the actual abstract will be smaller.")
-            search_terms = [drug_info_data_umls["Drug_name"], drug_info_data_umls["Indi_UMLS_concept"]]
+            # search_terms = [drug_info_data_umls["Drug_name"],
+            #                 drug_info_data_umls["Indi_UMLS_concept"]]
+            search_terms = [drug_info_data_with_non_disease["Drug_name"],
+                            drug_info_data_with_non_disease["Indi_UMLS_concept"]]
+
             drug_abstract_all = SearchMultipleTerms(search_terms, retmax=self.pubmed_search_ret_max).search_pubmed()
             print("drug_abstract_all has shape ", drug_abstract_all.shape)
+            # print(drug_abstract_all)
+            pickle_out = open("./drug_abstract_all.pickle", 'wb')
+            pickle.dump(drug_abstract_all, pickle_out)
+            pickle_out.close()
 
             # Make label for each drug, label is one-hot indications.
-            corpus = MakeLable(drug_abstract_all).make_label()
+            corpus = MakeLable(drug_abstract_all, drug_info_data_with_non_disease).make_label()
+            # print(corpus)
             print("Make label returned corpus with shape ", corpus.shape)
-            print("corpus has the label with length", len(corpus.label[0]), " it means this many classes.")
+            # print("corpus has the label with length", len(corpus.label[0]), " it means this many classes.")
             # Save corpus
             pickle_out = open("./corpus.pickle", 'wb')
             pickle.dump(corpus, pickle_out)
@@ -76,7 +101,13 @@ class AllTogether:
             print("Input abstracts and labels to NN model.")
             abstracts = corpus.Abstract.tolist()
             labels = corpus.label.tolist()
+            print("There are ", labels.count(0), " 0 and ", labels.count(1), " 1 in the labels.")
             history = DeepModel(input_data_text=abstracts, labels=labels, num_epochs=self.num_epochs).model_run()
+            # Save history
+            # pickle_out = open("./history.pickle", 'wb')
+            # pickle.dump(history, pickle_out)
+            # pickle_out.close()
+            # Plot history
             PlotHistory(history).plot_history()
             print('Plot results pdf done.')
 
@@ -87,14 +118,21 @@ class AllTogether:
             corpus = pickle.load(pickle_in)
             abstracts = corpus.Abstract.tolist()
             labels = corpus.label.tolist()
+            print("There are ", labels.count(0), " 0s and ", labels.count(1), " 1s in the labels.")
+            # Run NN
             history = DeepModel(input_data_text=abstracts, labels=labels, num_epochs=self.num_epochs).model_run()
+            # # Save history
+            # pickle_out = open("./history.pickle", 'wb')
+            # pickle.dump(history, pickle_out)
+            # pickle_out.close()
+            # Plot history
             PlotHistory(history).plot_history()
             print('Plot results pdf done.')
 
 
 def main():
     warnings.filterwarnings("ignore", category=FutureWarning)
-    AllTogether(already_have_data=False, process_drug_n=5, pubmed_search_ret_max=10, num_epochs=10).run_all_together()
+    AllTogether(already_have_data=False, process_drug_n=100, pubmed_search_ret_max=20, num_epochs=2).run_all_together()
 
 
 if __name__ == '__main__':

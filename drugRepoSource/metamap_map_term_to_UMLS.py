@@ -31,10 +31,11 @@ class RunMetaMap:
     def run_metamap(self):
         mm = MetaMap.get_instance(self.metamap_bin)
         sentence = self.term
+        # print(sentence)
         printable = set(string.printable)
         sent_filtered = ["".join(filter(lambda x: x in printable, item)) for item in sentence]
         sentence = sent_filtered
-
+        # print(sentence)
         concepts, error = mm.extract_concepts(
             sentences=sentence, compute_all_mappings=False,
             prefer_multiple_concepts=False,
@@ -63,7 +64,7 @@ class RunMetaMap:
 
 
 def main():
-    term = ['Cystic Fibrosis (CF)']
+    # term = ['Cystic Fibrosis (CF)']
     # term = ["heart attack"]
     # term = ["Metastatic Colorectal Cancers"]
     # term = ["Metastatic Squamous Cell Carcinoma of the Head and Neck"]
@@ -78,9 +79,10 @@ def main():
     # term = ["Melanoma"]
     # term = ["Acute Lymphoblastic Leukaemias (ALL)"]
     # term = ["Thyroid Cancers"]  # cancers needs to be changed to cancer
+    term = ["Thrombocytopenia"]
     concept_term = RunMetaMap(term=term).run_metamap()
-    print("\n\nFinal")
-    print(concept_term)
+    # print("\n\nFinal")
+    # print(concept_term)
 
 
 if __name__ == '__main__':
