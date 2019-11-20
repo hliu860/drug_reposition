@@ -132,7 +132,11 @@ class AllTogether:
 
 def main():
     warnings.filterwarnings("ignore", category=FutureWarning)
+<<<<<<< HEAD
     AllTogether(already_have_data=False, process_drug_n=100, pubmed_search_ret_max=20, num_epochs=2).run_all_together()
+=======
+    AllTogether(already_have_data=True, process_drug_n=100, pubmed_search_ret_max=20, num_epochs=100).run_all_together()
+>>>>>>> refs/remotes/origin/hp
 
 
 if __name__ == '__main__':
