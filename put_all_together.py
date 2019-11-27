@@ -1,5 +1,7 @@
 import pickle
 import warnings
+import os
+import sys
 
 from drugRepoSource.get_drug_info_from_drugbank import GetDrugInfoFromDrugBank
 
@@ -10,7 +12,6 @@ from drugRepoSource.deep_nn_model import DeepModel
 from drugRepoSource.plot_history import PlotHistory
 from drugRepoSource.metamap_indication_to_umls import IndiToUMLS
 from drugRepoSource.make_drug_disease_and_drug_non_disease_pairs import DrugDiseaseDrugNonDiseasePairs
-
 
 class AllTogether:
     def __init__(self, already_have_data, process_drug_n, pubmed_search_ret_max, num_epochs):
@@ -72,7 +73,13 @@ class AllTogether:
             search_terms = [drug_info_data_with_non_disease["Drug_name"],
                             drug_info_data_with_non_disease["Indi_UMLS_concept"]]
 
-            drug_abstract_all = SearchMultipleTerms(search_terms, retmax=self.pubmed_search_ret_max).search_pubmed()
+            if sys.platform == "darwin":
+                pubmed_local_path = "/Volumes/pubmedlocal"
+            elif sys.platform == "linux":
+                pubmed_local_path = "/mnt/ssd300g"
+
+            drug_abstract_all = SearchMultipleTerms(search_terms, retmax=self.pubmed_search_ret_max,
+                                                    pubmed_local_path=pubmed_local_path).search_pubmed()
             print("drug_abstract_all has shape ", drug_abstract_all.shape)
             # print(drug_abstract_all)
             pickle_out = open("./drug_abstract_all.pickle", 'wb')

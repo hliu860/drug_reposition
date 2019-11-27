@@ -1,13 +1,15 @@
 import pandas as pd
 
-from drugRepoSource.pubmed_search import PubMedBiopython
+# from drugRepoSource.pubmed_search import PubMedBiopython
+from drugRepoSource.pubmed_search_local import PubmedLocal
 
 
 class SearchMultipleTerms:
-    def __init__(self, terms, retmax):
+    def __init__(self, terms, retmax, pubmed_local_path):
         self.search_terms = terms
         self.retmax = retmax
         self.abs_n_keep = 1
+        self.pubmed_local_path = pubmed_local_path
 
     def search_pubmed(self):
         search_terms = self.search_terms
@@ -25,7 +27,12 @@ class SearchMultipleTerms:
 
             print(search_term, " ", index + 1, " | ", len(drug_indi_terms))
 
-            article_pd = PubMedBiopython(search_term, retmax=self.retmax).search_pubmed()
+            # article_pd = PubMedBiopython(search_term, retmax=self.retmax).search_pubmed()
+
+            # Search local pubmed archive
+            article_pd = PubmedLocal(pubmed_local_path=self.pubmed_local_path, query_term=search_term,
+                                     retmax=self.retmax).run()
+            # print(article_pd)
 
             if not article_pd.empty:
                 sentences = article_pd.abstract.tolist()

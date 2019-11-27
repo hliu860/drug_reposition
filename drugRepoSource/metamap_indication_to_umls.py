@@ -2,6 +2,8 @@ from drugRepoSource.metamap_map_term_to_UMLS import RunMetaMap
 import os
 import re
 import subprocess
+import psutil
+import time
 
 
 class IndiToUMLS:
@@ -10,27 +12,39 @@ class IndiToUMLS:
     """
     def __init__(self, drug_info_data):
         self.drug_info_data = drug_info_data
-    #
-    # @staticmethod
-    # def check_if_metamap_server_run():
-    #     ps_output = subprocess.Popen("ps", stdout=subprocess.PIPE)
-    #     ps_output = str(ps_output.stdout.read())
-    #
-    #     if not re.search("taggerserver", ps_output):
-    #         print("skrmedpostctl is not running, starting...")
-    #         os.system("/Users/hl/Documents/metamap/public_mm/bin/skrmedpostctl start")
-    #     else:
-    #         print("taggerserver is running.")
-    #
-    #     if not re.search("disambServer", ps_output):
-    #         print("wsdserverctl is not running, starting...")
-    #         os.system("/Users/hl/Documents/metamap/public_mm/bin/wsdserverctl start")
-    #     else:
-    #         print("wsdserverctl is running.")
+
+    @staticmethod
+    def check_if_process_running(processName):
+        # print(processName)
+        # Check if there is any running process that contains the given name processName.
+        # Iterate over the all the running process
+        for proc in psutil.process_iter():
+            try:
+                # Check if process name contains the given name string.
+                if processName in str(proc.as_dict()["open_files"]):
+                    return True
+            except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+                pass
+        return False
+
+    def check_if_metamap_server_run(self):
+        if not self.check_if_process_running("Tagger_server"):
+            print("skrmedpostctl is not running, starting...")
+            os.system("skrmedpostctl start")
+            time.sleep(10)
+        else:
+            print("taggerserver is running.")
+
+        if not self.check_if_process_running("WSD_Server"):
+            print("wsdserverctl is not running, starting...")
+            os.system("wsdserverctl start")
+            time.sleep(30)
+        else:
+            print("wsdserverctl is running.")
 
     def indi_to_umls_concept(self):
         # check if Metamap server running.
-        # self.check_if_metamap_server_run()
+        self.check_if_metamap_server_run()
 
         drug_info_data = self.drug_info_data.copy()
 
@@ -92,3 +106,11 @@ class IndiToUMLS:
 
     def run(self):
         return self.indi_to_umls_concept()
+
+
+def main():
+    IndiToUMLS.check_if_process_running("WSD_Server")  # Tagger_server  # WSD_Server
+
+
+if __name__ == '__main__':
+    main()

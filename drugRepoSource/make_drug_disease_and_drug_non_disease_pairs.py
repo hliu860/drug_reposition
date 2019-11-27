@@ -15,7 +15,7 @@ np.set_printoptions(linewidth=300)
 class DrugDiseaseDrugNonDiseasePairs:
     def __init__(self, data):
         self.data = data
-        self.non_disease_n = 3
+        self.non_disease_n = 10
 
     def make_drug_non_disease_pair(self):
         non_disease_pair = self.data.copy()
